@@ -1,0 +1,2270 @@
+<!DOCTYPE html>
+<html lang="it" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Studio Legale Contarini &amp; Associati — Avvocati e Consulenti Legali | Venezia</title>
+    <meta name="description" content="Studio Legale Contarini & Associati a Venezia e Mestre: Avvocati Cassazionisti specializzati in diritto civile, famiglia, lavoro, penale e diritto d'impresa. Consulenze in studio e online.">
+
+    <!-- Google Fonts: Playfair Display & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome 6 CDN per icone nitide e istituzionali -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Configurazione personalizzata Tailwind: palette Blu Navy & Oro/Ottone -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: '#0F172A',
+                        navyLight: '#1E293B',
+                        navySoft: '#334155',
+                        brass: '#B48A4E',
+                        brassLight: '#C8A165',
+                        brassPale: '#F5EFE4',
+                        paper: '#F8F9FA',
+                        muted: '#64748B'
+                    },
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'Georgia', 'serif'],
+                        sans: ['"Inter"', 'system-ui', 'sans-serif']
+                    },
+                    boxShadow: {
+                        soft: '0 10px 30px -10px rgba(15, 23, 42, 0.08)',
+                        elevated: '0 20px 50px -12px rgba(15, 23, 42, 0.16)'
+                    }
+                }
+            }
+        };
+    </script>
+</head>
+<body class="bg-paper text-navy font-sans antialiased selection:bg-brass/25 selection:text-navy overflow-x-hidden flex flex-col min-h-screen">
+
+    <!-- =========================================================
+         NAVBAR FISSA CON MENU DESKTOP E HAMBURGER MOBILE ANIMATO
+    ========================================================== -->
+    <header id="navbar" class="fixed top-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200/80 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Brand / Logo -->
+                <button type="button" onclick="navigateTo('home')" class="flex items-center gap-3 text-left group focus:outline-none">
+                    <div class="w-11 h-11 rounded-xl bg-navy text-brassLight flex items-center justify-center shadow-sm group-hover:bg-navyLight transition-colors shrink-0 border border-brass/30">
+                        <i class="fa-solid fa-scale-balanced text-lg" aria-hidden="true"></i>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="font-serif text-lg sm:text-xl font-semibold tracking-tight text-navy group-hover:text-brass transition-colors leading-tight">
+                            Contarini &amp; Associati
+                        </span>
+                        <span class="text-[10px] sm:text-[11px] uppercase tracking-[0.2em] text-brass font-semibold">
+                            Studio Legale &middot; Venezia
+                        </span>
+                    </div>
+                </button>
+
+                <!-- Navigazione Desktop -->
+                <nav class="hidden lg:flex items-center space-x-7" aria-label="Navigazione principale">
+                    <button type="button" data-nav="home" onclick="navigateTo('home')" class="nav-link relative py-2 text-xs font-semibold uppercase tracking-wider transition-colors">
+                        Home
+                    </button>
+                    <button type="button" data-nav="aree" onclick="navigateTo('aree')" class="nav-link relative py-2 text-xs font-semibold uppercase tracking-wider transition-colors">
+                        Aree di Competenza
+                    </button>
+                    <button type="button" data-nav="studio" onclick="navigateTo('studio')" class="nav-link relative py-2 text-xs font-semibold uppercase tracking-wider transition-colors">
+                        Lo Studio &amp; Team
+                    </button>
+                    <button type="button" data-nav="consulenza" onclick="navigateTo('consulenza')" class="nav-link relative py-2 text-xs font-semibold uppercase tracking-wider transition-colors">
+                        Consulenza &amp; Onorari
+                    </button>
+
+                    <button type="button" onclick="goToConsultationForm()" class="ml-2 px-5 py-2.5 rounded-xl bg-navy text-white text-xs font-semibold uppercase tracking-wider hover:bg-brass transition-all duration-300 shadow-sm hover:shadow-md active:scale-95">
+                        Prenota Consulenza
+                    </button>
+                </nav>
+
+                <!-- Pulsante Hamburger Mobile -->
+                <div class="lg:hidden flex items-center gap-2">
+                    <button type="button" onclick="goToConsultationForm()" class="px-3.5 py-2 rounded-xl bg-navy text-white text-xs font-semibold tracking-wide hover:bg-brass transition-colors">
+                        Consulenza
+                    </button>
+                    <button id="mobile-menu-btn" type="button" aria-label="Apri menu di navigazione" aria-expanded="false" class="p-2.5 rounded-xl text-navy hover:bg-slate-100 focus:outline-none transition-colors">
+                        <div class="w-6 h-5 flex flex-col justify-between items-end">
+                            <span id="ham-line-1" class="block h-0.5 w-6 bg-navy rounded-full transition-all duration-300 origin-center"></span>
+                            <span id="ham-line-2" class="block h-0.5 w-4 bg-brass rounded-full transition-all duration-300"></span>
+                            <span id="ham-line-3" class="block h-0.5 w-6 bg-navy rounded-full transition-all duration-300 origin-center"></span>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Menu Dropdown Mobile Animato -->
+        <div id="mobile-menu" class="lg:hidden max-h-0 overflow-hidden transition-all duration-300 ease-in-out bg-white border-b border-slate-200 shadow-lg">
+            <div class="px-5 py-5 space-y-2 flex flex-col">
+                <button type="button" data-nav="home" onclick="navigateTo('home'); toggleMobileMenu(false);" class="mobile-nav-link text-left py-3 px-4 rounded-xl text-sm font-semibold uppercase tracking-wider transition-colors">
+                    Home
+                </button>
+                <button type="button" data-nav="aree" onclick="navigateTo('aree'); toggleMobileMenu(false);" class="mobile-nav-link text-left py-3 px-4 rounded-xl text-sm font-semibold uppercase tracking-wider transition-colors">
+                    Aree di Competenza
+                </button>
+                <button type="button" data-nav="studio" onclick="navigateTo('studio'); toggleMobileMenu(false);" class="mobile-nav-link text-left py-3 px-4 rounded-xl text-sm font-semibold uppercase tracking-wider transition-colors">
+                    Lo Studio &amp; Team
+                </button>
+                <button type="button" data-nav="consulenza" onclick="navigateTo('consulenza'); toggleMobileMenu(false);" class="mobile-nav-link text-left py-3 px-4 rounded-xl text-sm font-semibold uppercase tracking-wider transition-colors">
+                    Consulenza &amp; Onorari
+                </button>
+                <div class="pt-3 border-t border-slate-100">
+                    <button type="button" onclick="toggleMobileMenu(false); goToConsultationForm();" class="w-full py-3.5 px-6 rounded-xl bg-brass text-white text-xs font-bold uppercase tracking-wider hover:bg-navy transition-colors shadow-sm">
+                        Prenota Prima Consulenza
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- =========================================================
+         CONTENITORE PRINCIPALE SPA (4 PAGINE)
+    ========================================================== -->
+    <main class="flex-grow pt-20">
+
+        <!-- =====================================================
+             PAGINA 1: HOME
+        ====================================================== -->
+        <section id="page-home" class="page-view block">
+
+            <!-- HERO SECTION A TUTTO SCHERMO -->
+            <div class="relative min-h-[84vh] flex items-center overflow-hidden bg-navy">
+                <!-- Immagine di sfondo architettura/studio legale con fallback -->
+                <img
+                    src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=1920&q=85"
+                    alt="Studio Legale Contarini & Associati — Biblioteca e sala riunioni"
+                    onerror="this.onerror=null;this.src='https://placehold.co/1920x1080/0F172A/C8A165?text=Studio+Legale+Contarini+%26+Associati';"
+                    class="absolute inset-0 w-full h-full object-cover object-center"
+                >
+                <!-- Overlay Blu Navy sfumato -->
+                <div class="absolute inset-0 bg-gradient-to-r from-navy/95 via-navy/85 to-navy/70"></div>
+
+                <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28 w-full">
+                    <div class="max-w-3xl">
+                        <!-- Badge Istituzionale -->
+                        <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-brass/50 text-brassLight text-xs sm:text-sm font-medium tracking-wide mb-7">
+                            <span class="w-2 h-2 rounded-full bg-brassLight"></span>
+                            Avvocati Cassazionisti &bull; Consulenza in Studio e Online
+                        </div>
+
+                        <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-semibold text-white leading-[1.12] tracking-tight mb-6">
+                            Tutela legale rigorosa, chiara e <span class="italic font-normal text-brassLight">orientata al risultato</span>
+                        </h1>
+
+                        <p class="text-base sm:text-lg lg:text-xl text-slate-200 font-light leading-relaxed mb-10 max-w-2xl">
+                            Da oltre vent'anni affianchiamo privati, famiglie e imprese a Venezia, Mestre e su tutto il territorio nazionale con assistenza stragiudiziale, difesa in giudizio e massima trasparenza sui costi.
+                        </p>
+
+                        <!-- CTA Buttons -->
+                        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+                            <button type="button" onclick="goToConsultationForm()" class="px-8 py-4 rounded-xl bg-brass text-white font-semibold text-sm uppercase tracking-wider hover:bg-brassLight hover:text-navy transition-all duration-300 shadow-lg active:scale-95 text-center">
+                                Prenota Prima Consulenza
+                            </button>
+                            <button type="button" onclick="navigateTo('aree')" class="px-8 py-4 rounded-xl bg-white/10 backdrop-blur-md border border-white/35 text-white font-semibold text-sm uppercase tracking-wider hover:bg-white hover:text-navy transition-all duration-300 active:scale-95 text-center">
+                                Esplora le Aree di Competenza
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BARRA DI FIDUCIA / CREDENZIALI (TRUST BAR - 5 PILASTRI) -->
+            <div class="bg-white border-b border-slate-200/80">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+                        <div class="flex items-start gap-3.5 p-4 rounded-2xl bg-paper border border-slate-200/70">
+                            <div class="w-10 h-10 rounded-xl bg-navy text-brassLight flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-landmark text-sm"></i>
+                            </div>
+                            <div>
+                                <h2 class="font-semibold text-navy text-sm">Albo Cassazionisti</h2>
+                                <p class="text-xs text-muted mt-0.5">Patrocinio dinanzi alle Giurisdizioni Superiori.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-3.5 p-4 rounded-2xl bg-paper border border-slate-200/70">
+                            <div class="w-10 h-10 rounded-xl bg-brass/15 text-brass flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-award text-sm"></i>
+                            </div>
+                            <div>
+                                <h2 class="font-semibold text-navy text-sm">+20 Anni Esperienza</h2>
+                                <p class="text-xs text-muted mt-0.5">Comprovata solidità nel foro di Venezia.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-3.5 p-4 rounded-2xl bg-paper border border-slate-200/70">
+                            <div class="w-10 h-10 rounded-xl bg-navy text-brassLight flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-file-signature text-sm"></i>
+                            </div>
+                            <div>
+                                <h2 class="font-semibold text-navy text-sm">Preventivo Scritto</h2>
+                                <p class="text-xs text-muted mt-0.5">Parametri trasparenti D.M. 147/2022.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-3.5 p-4 rounded-2xl bg-paper border border-slate-200/70">
+                            <div class="w-10 h-10 rounded-xl bg-brass/15 text-brass flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-video text-sm"></i>
+                            </div>
+                            <div>
+                                <h2 class="font-semibold text-navy text-sm">Consulenze Online</h2>
+                                <p class="text-xs text-muted mt-0.5">Assistenza da remoto in tutta Italia.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-3.5 p-4 rounded-2xl bg-paper border border-slate-200/70 sm:col-span-2 lg:col-span-1">
+                            <div class="w-10 h-10 rounded-xl bg-navy text-brassLight flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-shield-halved text-sm"></i>
+                            </div>
+                            <div>
+                                <h2 class="font-semibold text-navy text-sm">Riservatezza</h2>
+                                <p class="text-xs text-muted mt-0.5">Segreto professionale e conformità GDPR.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SEZIONE: AREE DI COMPETENZA PRINCIPALI (4 CARD) -->
+            <div class="py-18 sm:py-24 bg-paper">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+                        <div class="max-w-2xl">
+                            <span class="text-xs font-bold uppercase tracking-[0.22em] text-brass">Specializzazioni</span>
+                            <h2 class="font-serif text-3xl sm:text-4xl font-semibold text-navy mt-2">
+                                Aree di Competenza Principali
+                            </h2>
+                            <p class="text-muted text-base mt-3 font-light">
+                                Un team multidisciplinare organizzato per dipartimenti specialistici, per offrire risposte precise in ogni ambito del diritto.
+                            </p>
+                        </div>
+                        <button type="button" onclick="navigateTo('aree')" class="self-start md:self-auto inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-white border border-slate-200 text-navy text-xs font-bold uppercase tracking-wider hover:border-brass hover:text-brass transition-all shadow-sm">
+                            Tutte le 12 Materie
+                            <i class="fa-solid fa-arrow-right text-[11px]"></i>
+                        </button>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <!-- Card 1 -->
+                        <article class="group bg-white rounded-2xl p-7 border border-slate-200/80 shadow-soft hover:shadow-elevated hover:-translate-y-1 transition-all duration-300 flex flex-col">
+                            <div class="w-12 h-12 rounded-xl bg-navy/5 text-navy group-hover:bg-navy group-hover:text-brassLight flex items-center justify-center mb-5 transition-colors">
+                                <i class="fa-solid fa-file-contract text-xl"></i>
+                            </div>
+                            <h3 class="font-serif text-xl font-semibold text-navy mb-2.5 group-hover:text-brass transition-colors">
+                                Diritto Civile &amp; Contratti
+                            </h3>
+                            <p class="text-sm text-muted leading-relaxed mb-6 flex-grow">
+                                Redazione e revisione contrattuale, recupero crediti, risarcimento danni, locazioni, condominio e tutela della proprietà immobiliare.
+                            </p>
+                            <button type="button" onclick="openAreasWithCategory('Civile & Immobiliare')" class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-brass hover:text-navy transition-colors">
+                                Approfondisci
+                                <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                            </button>
+                        </article>
+
+                        <!-- Card 2 -->
+                        <article class="group bg-white rounded-2xl p-7 border border-slate-200/80 shadow-soft hover:shadow-elevated hover:-translate-y-1 transition-all duration-300 flex flex-col">
+                            <div class="w-12 h-12 rounded-xl bg-navy/5 text-navy group-hover:bg-navy group-hover:text-brassLight flex items-center justify-center mb-5 transition-colors">
+                                <i class="fa-solid fa-people-roof text-xl"></i>
+                            </div>
+                            <h3 class="font-serif text-xl font-semibold text-navy mb-2.5 group-hover:text-brass transition-colors">
+                                Diritto di Famiglia &amp; Successioni
+                            </h3>
+                            <p class="text-sm text-muted leading-relaxed mb-6 flex-grow">
+                                Separazioni, divorzi, affidamento minori, negoziazione assistita, pianificazione ereditaria, testamenti e divisioni patrimoniali.
+                            </p>
+                            <button type="button" onclick="openAreasWithCategory('Famiglia & Successioni')" class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-brass hover:text-navy transition-colors">
+                                Approfondisci
+                                <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                            </button>
+                        </article>
+
+                        <!-- Card 3 -->
+                        <article class="group bg-white rounded-2xl p-7 border border-slate-200/80 shadow-soft hover:shadow-elevated hover:-translate-y-1 transition-all duration-300 flex flex-col">
+                            <div class="w-12 h-12 rounded-xl bg-navy/5 text-navy group-hover:bg-navy group-hover:text-brassLight flex items-center justify-center mb-5 transition-colors">
+                                <i class="fa-solid fa-briefcase text-xl"></i>
+                            </div>
+                            <h3 class="font-serif text-xl font-semibold text-navy mb-2.5 group-hover:text-brass transition-colors">
+                                Diritto del Lavoro
+                            </h3>
+                            <p class="text-sm text-muted leading-relaxed mb-6 flex-grow">
+                                Impugnazione licenziamenti, vertenze sindacali, mobbing, differenze retributive e consulenza giuslavoristica continuativa per aziende.
+                            </p>
+                            <button type="button" onclick="openAreasWithCategory('Lavoro')" class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-brass hover:text-navy transition-colors">
+                                Approfondisci
+                                <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                            </button>
+                        </article>
+
+                        <!-- Card 4 -->
+                        <article class="group bg-white rounded-2xl p-7 border border-slate-200/80 shadow-soft hover:shadow-elevated hover:-translate-y-1 transition-all duration-300 flex flex-col">
+                            <div class="w-12 h-12 rounded-xl bg-navy/5 text-navy group-hover:bg-navy group-hover:text-brassLight flex items-center justify-center mb-5 transition-colors">
+                                <i class="fa-solid fa-gavel text-xl"></i>
+                            </div>
+                            <h3 class="font-serif text-xl font-semibold text-navy mb-2.5 group-hover:text-brass transition-colors">
+                                Diritto Penale &amp; d'Impresa
+                            </h3>
+                            <p class="text-sm text-muted leading-relaxed mb-6 flex-grow">
+                                Difesa penale, reati societari e tributari, costituzione di parte civile, modelli organizzativi 231 e adeguamento Privacy GDPR.
+                            </p>
+                            <button type="button" onclick="openAreasWithCategory('Penale')" class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-brass hover:text-navy transition-colors">
+                                Approfondisci
+                                <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                            </button>
+                        </article>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SEZIONE: COME LAVORIAMO (3 STEP NUMERATI) -->
+            <div class="py-18 sm:py-24 bg-navy text-white relative overflow-hidden">
+                <div class="absolute -right-24 -top-24 w-96 h-96 rounded-full bg-brass/10 blur-3xl pointer-events-none"></div>
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                    <div class="text-center max-w-2xl mx-auto mb-14">
+                        <span class="text-xs font-bold uppercase tracking-[0.24em] text-brassLight">Metodo &amp; Chiarezza</span>
+                        <h2 class="font-serif text-3xl sm:text-4xl font-semibold mt-2 mb-3">
+                            Come Lavoriamo
+                        </h2>
+                        <p class="text-slate-300 text-sm sm:text-base font-light">
+                            Un percorso strutturato e trasparente fin dal primo incontro, per tutelare i tuoi diritti senza incertezze su tempi e costi.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <!-- Step 1 -->
+                        <div class="relative p-8 rounded-2xl bg-navyLight/90 border border-white/10">
+                            <span class="font-serif text-5xl font-bold text-brass/30 absolute top-5 right-6 select-none">01</span>
+                            <div class="w-11 h-11 rounded-xl bg-brass text-white flex items-center justify-center font-serif font-bold text-lg mb-5 shadow-md">
+                                1
+                            </div>
+                            <h3 class="font-serif text-xl font-semibold text-white mb-3">
+                                Analisi preliminare e inquadramento
+                            </h3>
+                            <p class="text-sm text-slate-300 leading-relaxed font-light">
+                                Esaminiamo i fatti e i documenti in studio o in videocall, valutando subito punti di forza, rischi e termini di legge applicabili al caso.
+                            </p>
+                        </div>
+
+                        <!-- Step 2 -->
+                        <div class="relative p-8 rounded-2xl bg-navyLight/90 border border-white/10">
+                            <span class="font-serif text-5xl font-bold text-brass/30 absolute top-5 right-6 select-none">02</span>
+                            <div class="w-11 h-11 rounded-xl bg-brass text-white flex items-center justify-center font-serif font-bold text-lg mb-5 shadow-md">
+                                2
+                            </div>
+                            <h3 class="font-serif text-xl font-semibold text-white mb-3">
+                                Strategia e preventivo trasparente
+                            </h3>
+                            <p class="text-sm text-slate-300 leading-relaxed font-light">
+                                Definiamo insieme la linea d'azione più efficace e consegniamo un preventivo scritto dettagliato ai sensi del D.M. 147/2022 prima del mandato.
+                            </p>
+                        </div>
+
+                        <!-- Step 3 -->
+                        <div class="relative p-8 rounded-2xl bg-navyLight/90 border border-white/10">
+                            <span class="font-serif text-5xl font-bold text-brass/30 absolute top-5 right-6 select-none">03</span>
+                            <div class="w-11 h-11 rounded-xl bg-brass text-white flex items-center justify-center font-serif font-bold text-lg mb-5 shadow-md">
+                                3
+                            </div>
+                            <h3 class="font-serif text-xl font-semibold text-white mb-3">
+                                Tutela stragiudiziale o difesa in giudizio
+                            </h3>
+                            <p class="text-sm text-slate-300 leading-relaxed font-light">
+                                Privilegiamo soluzioni rapide tramite diffide, mediazione e accordi; quando necessario, assicuriamo difesa tecnica fino in Corte di Cassazione.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SEZIONE: CONTATTI, ORARI, SEDE & GOOGLE MAPS -->
+            <div class="py-18 sm:py-24 bg-white border-t border-slate-200/80">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
+
+                        <!-- Colonna Sinistra: Contatti e Orari -->
+                        <div class="lg:col-span-6 space-y-7">
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-[0.22em] text-brass">Sede &amp; Recapiti</span>
+                                <h2 class="font-serif text-3xl sm:text-4xl font-semibold text-navy mt-2">
+                                    Contatti &amp; Orari di Ricevimento
+                                </h2>
+                                <p class="text-muted text-sm sm:text-base mt-3 font-light">
+                                    Riceviamo esclusivamente su appuntamento presso la nostra sede di Venezia Mestre oppure in videocall riservata.
+                                </p>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div class="p-4 rounded-2xl bg-paper border border-slate-200/80 flex items-start gap-3.5">
+                                    <div class="w-10 h-10 rounded-xl bg-navy/10 text-navy flex items-center justify-center shrink-0">
+                                        <i class="fa-solid fa-phone text-sm"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-[11px] font-semibold uppercase tracking-wider text-muted">Telefono Segreteria</p>
+                                        <a href="tel:+390419824510" class="text-sm font-bold text-navy hover:text-brass transition-colors mt-0.5 block">
+                                            +39 041 982 4510
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="p-4 rounded-2xl bg-paper border border-slate-200/80 flex items-start gap-3.5">
+                                    <div class="w-10 h-10 rounded-xl bg-navy/10 text-navy flex items-center justify-center shrink-0">
+                                        <i class="fa-solid fa-envelope text-sm"></i>
+                                    </div>
+                                    <div class="min-w-0">
+                                        <p class="text-[11px] font-semibold uppercase tracking-wider text-muted">Email Ordinaria</p>
+                                        <a href="mailto:segreteria@studiocontarini.it" class="text-sm font-bold text-navy hover:text-brass transition-colors mt-0.5 block truncate">
+                                            segreteria@studiocontarini.it
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="sm:col-span-2 p-4 rounded-2xl bg-brassPale/70 border border-brass/30 flex items-center justify-between gap-3">
+                                    <div class="flex items-start gap-3.5 min-w-0">
+                                        <div class="w-10 h-10 rounded-xl bg-brass text-white flex items-center justify-center shrink-0">
+                                            <i class="fa-solid fa-certificate text-sm"></i>
+                                        </div>
+                                        <div class="min-w-0">
+                                            <p class="text-[11px] font-bold uppercase tracking-wider text-brass">PEC Certificata</p>
+                                            <p class="text-sm font-mono font-semibold text-navy truncate mt-0.5">
+                                                studiolegale.contarini@venezia.pecavvocati.it
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <button type="button" onclick="copyTextToClipboard('studiolegale.contarini@venezia.pecavvocati.it', 'Indirizzo PEC copiato!')" class="shrink-0 px-3 py-1.5 rounded-lg bg-white border border-brass/30 text-xs font-semibold text-navy hover:bg-navy hover:text-white transition-colors">
+                                        Copia
+                                    </button>
+                                </div>
+
+                                <div class="sm:col-span-2 p-4 rounded-2xl bg-paper border border-slate-200/80 flex items-start gap-3.5">
+                                    <div class="w-10 h-10 rounded-xl bg-navy/10 text-navy flex items-center justify-center shrink-0">
+                                        <i class="fa-solid fa-location-dot text-sm"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-[11px] font-semibold uppercase tracking-wider text-muted">Sede Principale</p>
+                                        <p class="text-sm font-bold text-navy mt-0.5">
+                                            Corso del Popolo 42, 30172 Venezia Mestre (VE)
+                                        </p>
+                                        <p class="text-xs text-muted mt-0.5">
+                                            A 5 minuti dalla Stazione FS di Venezia Mestre &middot; Parcheggio pubblico adiacente.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Orari di Ricevimento -->
+                            <div class="rounded-2xl bg-paper p-6 border border-slate-200/80">
+                                <h3 class="font-serif text-lg font-semibold text-navy mb-4 flex items-center gap-2">
+                                    <i class="fa-regular fa-clock text-brass"></i>
+                                    Orari di Ricevimento (su appuntamento)
+                                </h3>
+                                <div class="divide-y divide-slate-200/80 text-sm">
+                                    <div class="py-2.5 flex justify-between">
+                                        <span class="font-medium text-navy">Lunedì – Giovedì</span>
+                                        <span class="text-slate-600">09:00 – 13:00 / 14:30 – 18:30</span>
+                                    </div>
+                                    <div class="py-2.5 flex justify-between">
+                                        <span class="font-medium text-navy">Venerdì</span>
+                                        <span class="text-slate-600">09:00 – 13:00 / 14:30 – 17:30</span>
+                                    </div>
+                                    <div class="py-2.5 flex justify-between">
+                                        <span class="text-muted">Sabato &amp; Domenica</span>
+                                        <span class="text-muted italic">Chiuso (urgenze penali su reperibilità)</span>
+                                    </div>
+                                </div>
+                                <div class="mt-5">
+                                    <button type="button" onclick="goToConsultationForm()" class="w-full py-3.5 px-6 rounded-xl bg-navy text-white text-xs font-bold uppercase tracking-wider hover:bg-brass transition-colors shadow-sm">
+                                        Prenota un Appuntamento
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Colonna Destra: Google Maps Responsive -->
+                        <div class="lg:col-span-6 lg:sticky lg:top-28">
+                            <div class="rounded-3xl overflow-hidden shadow-elevated border border-slate-200 bg-slate-100 h-[400px] sm:h-[520px] lg:h-[600px]">
+                                <iframe
+                                    title="Mappa Studio Legale Contarini & Associati - Corso del Popolo 42, Venezia Mestre"
+                                    src="https://www.google.com/maps?q=Corso+del+Popolo+42,+Mestre,+Venezia,+Italy&output=embed"
+                                    class="w-full h-full border-0"
+                                    loading="lazy"
+                                    referrerpolicy="no-referrer-when-downgrade"
+                                    allowfullscreen>
+                                </iframe>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =====================================================
+             PAGINA 2: AREE DI COMPETENZA (RICERCA, FILTRI & MODALE)
+        ====================================================== -->
+        <section id="page-aree" class="page-view hidden">
+            <!-- Header Pagina -->
+            <div class="bg-navy text-white py-14 sm:py-20">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-3xl">
+                    <span class="text-xs font-bold uppercase tracking-[0.24em] text-brassLight">Dipartimenti Specialistici</span>
+                    <h1 class="font-serif text-4xl sm:text-5xl font-semibold mt-3 mb-4">
+                        Aree di Competenza
+                    </h1>
+                    <p class="text-slate-300 text-base sm:text-lg font-light">
+                        Cerca una materia o filtra per dipartimento. Clicca su ogni scheda per scoprire i casi trattati, i documenti utili e prenotare una consulenza mirata.
+                    </p>
+                </div>
+            </div>
+
+            <div class="py-12 sm:py-16 bg-paper">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+                    <!-- Pannello Ricerca e Filtri -->
+                    <div class="bg-white rounded-2xl p-5 sm:p-7 shadow-soft border border-slate-200/80 mb-10 space-y-5">
+                        <div class="flex flex-col md:flex-row gap-4 items-stretch md:items-center justify-between">
+                            <div class="relative flex-grow max-w-xl">
+                                <i class="fa-solid fa-magnifying-glass text-muted absolute left-4 top-1/2 -translate-y-1/2 text-sm pointer-events-none"></i>
+                                <input
+                                    id="areas-search-input"
+                                    type="search"
+                                    oninput="updateAreasSearch(this.value)"
+                                    placeholder="Cerca materia o parola chiave (es. divorzio, sfratto, licenziamento, GDPR...)"
+                                    class="w-full pl-11 pr-4 py-3 rounded-xl bg-paper border border-slate-200 text-sm text-navy placeholder:text-muted/75 focus:outline-none focus:border-brass focus:ring-2 focus:ring-brass/20 transition-all"
+                                >
+                            </div>
+                            <div class="flex items-center justify-between md:justify-end gap-4">
+                                <span id="areas-counter" class="text-xs sm:text-sm font-medium text-muted">12 materie disponibili</span>
+                                <button type="button" onclick="resetAreasFilters()" class="px-4 py-2 rounded-xl bg-paper border border-slate-200 text-xs font-semibold uppercase tracking-wider text-navy hover:bg-navy hover:text-white transition-colors">
+                                    Azzera
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Filtri Categoria -->
+                        <div id="areas-category-tabs" class="flex flex-wrap gap-2">
+                            <!-- Popolati via JS -->
+                        </div>
+                    </div>
+
+                    <!-- Griglia 12 Materie Legali -->
+                    <div id="areas-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- Popolata dinamicamente da JS -->
+                    </div>
+
+                    <!-- Stato vuoto -->
+                    <div id="areas-empty-state" class="hidden text-center py-16 px-6 bg-white rounded-2xl border border-slate-200/80 shadow-soft">
+                        <div class="w-14 h-14 rounded-full bg-navy/5 text-navy flex items-center justify-center mx-auto mb-4">
+                            <i class="fa-solid fa-scale-unbalanced text-xl text-brass"></i>
+                        </div>
+                        <h3 class="font-serif text-2xl font-semibold text-navy">Nessuna materia trovata</h3>
+                        <p class="text-sm text-muted mt-2 max-w-md mx-auto">
+                            Non trovi il caso specifico che cerchi? Contattaci direttamente per una valutazione preliminare riservata.
+                        </p>
+                        <div class="mt-6 flex flex-wrap justify-center gap-3">
+                            <button type="button" onclick="resetAreasFilters()" class="px-5 py-2.5 rounded-xl border border-slate-300 text-xs font-bold uppercase tracking-wider text-navy hover:bg-paper">
+                                Mostra tutte le materie
+                            </button>
+                            <button type="button" onclick="goToConsultationForm()" class="px-5 py-2.5 rounded-xl bg-brass text-white text-xs font-bold uppercase tracking-wider hover:bg-navy transition-colors">
+                                Chiedi Consulenza
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- =====================================================
+             PAGINA 3: LO STUDIO & TEAM + FAQ LEGALI
+        ====================================================== -->
+        <section id="page-studio" class="page-view hidden">
+            <!-- Header Pagina -->
+            <div class="bg-navy text-white py-14 sm:py-20">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-3xl">
+                    <span class="text-xs font-bold uppercase tracking-[0.24em] text-brassLight">Identità &amp; Deontologia</span>
+                    <h1 class="font-serif text-4xl sm:text-5xl font-semibold mt-3 mb-4">
+                        Lo Studio &amp; il Team
+                    </h1>
+                    <p class="text-slate-300 text-base sm:text-lg font-light">
+                        Uniamo la tradizione giuridica del foro veneziano a un approccio moderno, pragmatico e orientato alla risoluzione rapida delle controversie.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Presentazione Studio e Valori -->
+            <div class="py-16 sm:py-22 bg-white border-b border-slate-200/80">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+                        <div class="lg:col-span-6">
+                            <div class="rounded-3xl overflow-hidden shadow-elevated aspect-[4/3] bg-navy relative">
+                                <img
+                                    src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1000&q=80"
+                                    alt="Sede dello Studio Legale Contarini & Associati"
+                                    onerror="this.onerror=null;this.src='https://placehold.co/1000x750/0F172A/C8A165?text=Studio+Legale+Contarini';"
+                                    class="w-full h-full object-cover"
+                                >
+                                <div class="absolute bottom-4 left-4 right-4 p-4 rounded-2xl bg-navy/85 backdrop-blur-md text-white flex items-center justify-between">
+                                    <div>
+                                        <p class="font-serif text-base font-semibold">Fondato nel 2005</p>
+                                        <p class="text-xs text-brassLight">Ordine degli Avvocati di Venezia</p>
+                                    </div>
+                                    <span class="px-3 py-1 rounded-full bg-brass/20 border border-brass/50 text-brassLight text-xs font-semibold">
+                                        Foro di Venezia
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="lg:col-span-6 space-y-5">
+                            <span class="text-xs font-bold uppercase tracking-[0.22em] text-brass">I Nostri Valori</span>
+                            <h2 class="font-serif text-3xl sm:text-4xl font-semibold text-navy leading-tight">
+                                Rigore deontologico e soluzioni concrete
+                            </h2>
+                            <p class="text-muted text-sm sm:text-base leading-relaxed font-light">
+                                Lo <strong>Studio Legale Contarini &amp; Associati</strong> nasce con l'obiettivo di offrire un'assistenza legale di alto profilo fondata sull'ascolto diretto, la chiarezza espositiva e il rispetto rigoroso del Codice Deontologico Forense.
+                            </p>
+                            <p class="text-muted text-sm sm:text-base leading-relaxed font-light">
+                                Prima di avviare un contenzioso giudiziario valutiamo sempre la convenienza di strumenti alternativi di risoluzione rapida, come la <strong>mediazione civile</strong> e la <strong>negoziazione assistita</strong>, per contenere tempi, costi e stress emotivo del cliente.
+                            </p>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-3">
+                                <div class="p-4 rounded-2xl bg-paper border border-slate-200/80">
+                                    <p class="font-semibold text-navy text-sm flex items-center gap-2">
+                                        <i class="fa-solid fa-handshake text-brass"></i>
+                                        Mediazione &amp; Accordi
+                                    </p>
+                                    <p class="text-xs text-muted mt-1">Oltre il 65% delle pratiche civili risolto in via stragiudiziale.</p>
+                                </div>
+                                <div class="p-4 rounded-2xl bg-paper border border-slate-200/80">
+                                    <p class="font-semibold text-navy text-sm flex items-center gap-2">
+                                        <i class="fa-solid fa-comments text-brass"></i>
+                                        Aggiornamento Costante
+                                    </p>
+                                    <p class="text-xs text-muted mt-1">Report periodici chiari sullo stato di ogni fase processuale.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SEZIONE TEAM (4 AVVOCATI CON BIOGRAFIA ESPANDIBILE) -->
+            <div class="py-16 sm:py-24 bg-paper">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center max-w-2xl mx-auto mb-14">
+                        <span class="text-xs font-bold uppercase tracking-[0.22em] text-brass">I Professionisti</span>
+                        <h2 class="font-serif text-3xl sm:text-4xl font-semibold text-navy mt-2 mb-3">
+                            Il Nostro Team
+                        </h2>
+                        <p class="text-muted text-sm sm:text-base font-light">
+                            Avvocati iscritti all'Ordine di Venezia con competenze complementari e aggiornamento continuo.
+                        </p>
+                    </div>
+
+                    <div id="team-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-7">
+                        <!-- Popolato da JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- SEZIONE FAQ LEGALI (ACCORDION INTERATTIVO - 6 DOMANDE) -->
+            <div class="py-16 sm:py-24 bg-white border-t border-slate-200/80">
+                <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center max-w-2xl mx-auto mb-12">
+                        <span class="text-xs font-bold uppercase tracking-[0.22em] text-brass">Domande Frequenti</span>
+                        <h2 class="font-serif text-3xl sm:text-4xl font-semibold text-navy mt-2 mb-3">
+                            FAQ Legali
+                        </h2>
+                        <p class="text-muted text-sm sm:text-base font-light">
+                            Risposte chiare sui compensi, sul patrocinio a spese dello Stato e sullo svolgimento della prima consulenza.
+                        </p>
+                    </div>
+
+                    <div id="faq-container" class="space-y-3.5">
+                        <!-- Popolato da JS -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =====================================================
+             PAGINA 4: CONSULENZA & ONORARI
+        ====================================================== -->
+        <section id="page-consulenza" class="page-view hidden">
+            <!-- Header Pagina -->
+            <div class="bg-navy text-white py-14 sm:py-20">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-3xl">
+                    <span class="text-xs font-bold uppercase tracking-[0.24em] text-brassLight">Trasparenza &amp; Appuntamenti</span>
+                    <h1 class="font-serif text-4xl sm:text-5xl font-semibold mt-3 mb-4">
+                        Consulenza &amp; Onorari
+                    </h1>
+                    <p class="text-slate-300 text-base sm:text-lg font-light">
+                        Compensi determinati in conformità ai parametri forensi (D.M. 55/2014 agg. D.M. 147/2022), checklist documenti e prenotazione diretta in studio o online.
+                    </p>
+                </div>
+            </div>
+
+            <div class="py-14 sm:py-20 bg-paper">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+
+                    <!-- 1. SEZIONE TRASPARENZA ONORARI -->
+                    <div class="space-y-8">
+                        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+                            <div class="max-w-2xl">
+                                <span class="text-xs font-bold uppercase tracking-[0.22em] text-brass">Parametri Forensi D.M. 147/2022</span>
+                                <h2 class="font-serif text-3xl font-semibold text-navy mt-1">
+                                    Trasparenza sugli Onorari
+                                </h2>
+                                <p class="text-sm text-muted mt-2 font-light">
+                                    Prima del conferimento di qualsiasi incarico forniamo sempre un <strong>preventivo scritto analitico</strong> (art. 13 L. 247/2012), comprensivo di compenso, spese vive e accessori di legge (CPA 4% e IVA 22%).
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- 4 Box Orientativi -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                            <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-soft flex flex-col">
+                                <span class="text-[11px] font-bold uppercase tracking-wider text-brass">Primo Incontro</span>
+                                <h3 class="font-serif text-lg font-semibold text-navy mt-1">Prima Consulenza Orientativa</h3>
+                                <p class="font-serif text-2xl font-bold text-navy mt-3">€ 120 <span class="text-xs font-sans font-normal text-muted">+ acc. legge</span></p>
+                                <p class="text-xs text-muted leading-relaxed mt-3 flex-grow">
+                                    Colloquio di 45–60 minuti (in studio o videocall), analisi preliminare della documentazione e inquadramento strategico. <strong>Interamente detratta</strong> in caso di conferimento del mandato.
+                                </p>
+                            </div>
+
+                            <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-soft flex flex-col">
+                                <span class="text-[11px] font-bold uppercase tracking-wider text-brass">Analisi Documentale</span>
+                                <h3 class="font-serif text-lg font-semibold text-navy mt-1">Parere Legale Scritto</h3>
+                                <p class="font-serif text-2xl font-bold text-navy mt-3">da € 280 <span class="text-xs font-sans font-normal text-muted">+ acc. legge</span></p>
+                                <p class="text-xs text-muted leading-relaxed mt-3 flex-grow">
+                                    Parere motivato pro-veritate con riferimenti normativi e giurisprudenziali aggiornati, ideale per valutazioni patrimoniali, societarie o ereditarie.
+                                </p>
+                            </div>
+
+                            <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-soft flex flex-col">
+                                <span class="text-[11px] font-bold uppercase tracking-wider text-brass">Attività Extragiudiziale</span>
+                                <h3 class="font-serif text-lg font-semibold text-navy mt-1">Diffide, Contratti &amp; Mediazione</h3>
+                                <p class="font-serif text-2xl font-bold text-navy mt-3">da € 350 <span class="text-xs font-sans font-normal text-muted">+ acc. legge</span></p>
+                                <p class="text-xs text-muted leading-relaxed mt-3 flex-grow">
+                                    Redazione e revisione contratti, lettere di messa in mora, assistenza in mediazione civile e accordi di negoziazione assistita.
+                                </p>
+                            </div>
+
+                            <div class="bg-navy text-white rounded-2xl p-6 shadow-elevated flex flex-col border border-brass/30">
+                                <span class="text-[11px] font-bold uppercase tracking-wider text-brassLight">Contenzioso</span>
+                                <h3 class="font-serif text-lg font-semibold text-white mt-1">Difesa Giudiziale</h3>
+                                <p class="font-serif text-2xl font-bold text-brassLight mt-3">Preventivo su misura</p>
+                                <p class="text-xs text-slate-300 leading-relaxed mt-3 flex-grow">
+                                    Calcolato per singole fasi processuali secondo i parametri ministeriali D.M. 147/2022, con possibilità di pagamento rateale concordato.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Box Informativo Patrocinio a Spese dello Stato -->
+                        <div class="rounded-2xl bg-brassPale/80 border border-brass/35 p-5 sm:p-6 flex flex-col sm:flex-row items-start sm:items-center gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-navy text-brassLight flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-landmark-dome text-lg"></i>
+                            </div>
+                            <div class="space-y-1">
+                                <h3 class="font-serif text-lg font-semibold text-navy">Patrocinio a Spese dello Stato (Gratuito Patrocinio)</h3>
+                                <p class="text-xs sm:text-sm text-navySoft leading-relaxed">
+                                    Gli avvocati dello Studio sono iscritti negli elenchi del Consiglio dell'Ordine di Venezia abilitati al <strong>Patrocinio a Spese dello Stato</strong> (D.P.R. 115/2002) in materia civile, di famiglia, lavoro e penale per i cittadini che rientrano nei limiti di reddito fissati dalla legge. Verifichiamo gratuitamente la sussistenza dei requisiti.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2. CHECKLIST INTERATTIVA "PREPARA IL TUO APPUNTAMENTO" -->
+                    <div class="bg-white rounded-3xl p-6 sm:p-9 shadow-soft border border-slate-200/80">
+                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-slate-200/80 mb-6">
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-[0.22em] text-brass">Strumento Utile</span>
+                                <h2 class="font-serif text-2xl sm:text-3xl font-semibold text-navy mt-1">
+                                    Prepara il Tuo Appuntamento
+                                </h2>
+                                <p class="text-sm text-muted mt-1">
+                                    Seleziona la materia e spunta i documenti che hai già a disposizione per rendere la consulenza ancora più efficace.
+                                </p>
+                            </div>
+                            <span id="checklist-progress" class="self-start md:self-center px-4 py-2 rounded-full bg-paper border border-slate-200 text-xs font-bold text-navy shrink-0">
+                                0 / 5 pronti
+                            </span>
+                        </div>
+
+                        <!-- Tab Materia Checklist -->
+                        <div id="checklist-tabs" class="flex flex-wrap gap-2 mb-6">
+                            <!-- Popolati da JS -->
+                        </div>
+
+                        <!-- Lista Documenti Spuntabile -->
+                        <div id="checklist-items" class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                            <!-- Popolata da JS -->
+                        </div>
+                    </div>
+
+                    <!-- 3. MODULO COMPLETO PRENOTAZIONE CONSULENZA -->
+                    <div id="consultation-form-anchor" class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+
+                        <!-- Form Principale -->
+                        <div class="lg:col-span-8 bg-white rounded-3xl p-6 sm:p-10 shadow-soft border border-slate-200/80">
+                            <form id="consultation-form" onsubmit="handleConsultationSubmit(event)" class="space-y-6">
+                                <div class="pb-5 border-b border-slate-200/80">
+                                    <span class="text-xs font-bold uppercase tracking-[0.22em] text-brass">Richiesta Riservata</span>
+                                    <h2 class="font-serif text-2xl sm:text-3xl font-semibold text-navy mt-1">
+                                        Prenota la Tua Consulenza
+                                    </h2>
+                                    <p class="text-sm text-muted mt-1">
+                                        Riceverai subito un codice pratica univoco e la conferma dell'appuntamento da parte della nostra segreteria.
+                                    </p>
+                                </div>
+
+                                <!-- Modalità Consulenza -->
+                                <div>
+                                    <span class="block text-xs font-bold uppercase tracking-wider text-navy mb-2.5">Modalità di Consulenza *</span>
+                                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                                        <label class="cursor-pointer">
+                                            <input type="radio" name="cons-modality" value="In Studio (Venezia Mestre)" checked class="peer sr-only">
+                                            <div class="p-3.5 rounded-xl border border-slate-200 bg-paper peer-checked:border-brass peer-checked:bg-brassPale/60 transition-all text-center">
+                                                <i class="fa-solid fa-building-columns text-navy mb-1 block"></i>
+                                                <span class="block text-sm font-semibold text-navy">In Studio</span>
+                                                <span class="block text-[11px] text-muted">Venezia Mestre</span>
+                                            </div>
+                                        </label>
+                                        <label class="cursor-pointer">
+                                            <input type="radio" name="cons-modality" value="Videocall (Zoom / Meet)" class="peer sr-only">
+                                            <div class="p-3.5 rounded-xl border border-slate-200 bg-paper peer-checked:border-brass peer-checked:bg-brassPale/60 transition-all text-center">
+                                                <i class="fa-solid fa-video text-navy mb-1 block"></i>
+                                                <span class="block text-sm font-semibold text-navy">Videocall</span>
+                                                <span class="block text-[11px] text-muted">Zoom / Google Meet</span>
+                                            </div>
+                                        </label>
+                                        <label class="cursor-pointer">
+                                            <input type="radio" name="cons-modality" value="Consulenza Telefonica" class="peer sr-only">
+                                            <div class="p-3.5 rounded-xl border border-slate-200 bg-paper peer-checked:border-brass peer-checked:bg-brassPale/60 transition-all text-center">
+                                                <i class="fa-solid fa-phone-volume text-navy mb-1 block"></i>
+                                                <span class="block text-sm font-semibold text-navy">Telefonica</span>
+                                                <span class="block text-[11px] text-muted">Chiamata riservata</span>
+                                            </div>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <!-- Materia Legale & Urgenza -->
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <div>
+                                        <label for="cons-area" class="block text-xs font-bold uppercase tracking-wider text-navy mb-1.5">Materia Legale *</label>
+                                        <select id="cons-area" required class="w-full px-4 py-3 rounded-xl bg-paper border border-slate-200 text-sm text-navy font-medium focus:outline-none focus:border-brass focus:ring-2 focus:ring-brass/20">
+                                            <!-- Popolato da JS con tutte le 12 materie -->
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <span class="block text-xs font-bold uppercase tracking-wider text-navy mb-1.5">Livello di Urgenza *</span>
+                                        <div class="grid grid-cols-2 gap-2.5">
+                                            <label class="cursor-pointer">
+                                                <input type="radio" name="cons-urgency" value="Standard" id="urgency-standard" checked class="peer sr-only">
+                                                <div class="py-2.5 px-3 rounded-xl border border-slate-200 bg-paper peer-checked:border-navy peer-checked:bg-navy peer-checked:text-white text-center text-xs font-semibold text-navy transition-all">
+                                                    Standard
+                                                </div>
+                                            </label>
+                                            <label class="cursor-pointer">
+                                                <input type="radio" name="cons-urgency" value="Urgente (24-48h)" id="urgency-urgent" class="peer sr-only">
+                                                <div class="py-2.5 px-3 rounded-xl border border-slate-200 bg-paper peer-checked:border-brass peer-checked:bg-brass peer-checked:text-white text-center text-xs font-semibold text-navy transition-all">
+                                                    Urgente 24-48h
+                                                </div>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Data e Fascia Oraria Cliccabile -->
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                                    <div>
+                                        <label for="cons-date" class="block text-xs font-bold uppercase tracking-wider text-navy mb-1.5">Data Preferita *</label>
+                                        <input id="cons-date" type="date" required class="w-full px-4 py-3 rounded-xl bg-paper border border-slate-200 text-sm text-navy focus:outline-none focus:border-brass focus:ring-2 focus:ring-brass/20">
+                                    </div>
+                                    <div>
+                                        <span class="block text-xs font-bold uppercase tracking-wider text-navy mb-1.5">Fascia Oraria *</span>
+                                        <div id="cons-time-slots" class="grid grid-cols-2 gap-2">
+                                            <!-- Bottoni Mattina / Pomeriggio generati da JS -->
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Dati Cliente -->
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <div>
+                                        <label for="cons-firstname" class="block text-xs font-bold uppercase tracking-wider text-navy mb-1.5">Nome *</label>
+                                        <input id="cons-firstname" type="text" required placeholder="Es. Andrea" class="w-full px-4 py-3 rounded-xl bg-paper border border-slate-200 text-sm text-navy focus:outline-none focus:border-brass focus:ring-2 focus:ring-brass/20">
+                                    </div>
+                                    <div>
+                                        <label for="cons-lastname" class="block text-xs font-bold uppercase tracking-wider text-navy mb-1.5">Cognome *</label>
+                                        <input id="cons-lastname" type="text" required placeholder="Es. Visentin" class="w-full px-4 py-3 rounded-xl bg-paper border border-slate-200 text-sm text-navy focus:outline-none focus:border-brass focus:ring-2 focus:ring-brass/20">
+                                    </div>
+                                    <div>
+                                        <label for="cons-email" class="block text-xs font-bold uppercase tracking-wider text-navy mb-1.5">Email *</label>
+                                        <input id="cons-email" type="email" required placeholder="andrea.visentin@email.it" class="w-full px-4 py-3 rounded-xl bg-paper border border-slate-200 text-sm text-navy focus:outline-none focus:border-brass focus:ring-2 focus:ring-brass/20">
+                                    </div>
+                                    <div>
+                                        <label for="cons-phone" class="block text-xs font-bold uppercase tracking-wider text-navy mb-1.5">Telefono *</label>
+                                        <input id="cons-phone" type="tel" required placeholder="+39 347 123 4567" class="w-full px-4 py-3 rounded-xl bg-paper border border-slate-200 text-sm text-navy focus:outline-none focus:border-brass focus:ring-2 focus:ring-brass/20">
+                                    </div>
+                                </div>
+
+                                <!-- Sintesi Riservata del Quesito -->
+                                <div>
+                                    <label for="cons-summary" class="block text-xs font-bold uppercase tracking-wider text-navy mb-1.5">Sintesi Riservata del Quesito *</label>
+                                    <textarea id="cons-summary" rows="4" required placeholder="Descrivi brevemente la questione giuridica, eventuali scadenze o atti ricevuti. Le informazioni sono coperte dal segreto professionale." class="w-full px-4 py-3 rounded-xl bg-paper border border-slate-200 text-sm text-navy placeholder:text-muted/70 focus:outline-none focus:border-brass focus:ring-2 focus:ring-brass/20 resize-none"></textarea>
+                                </div>
+
+                                <!-- Checkbox GDPR Obbligatoria -->
+                                <label class="flex items-start gap-3 p-4 rounded-xl bg-paper border border-slate-200 cursor-pointer text-xs text-navySoft">
+                                    <input id="cons-privacy" type="checkbox" required class="mt-0.5 w-4 h-4 rounded border-slate-300 text-brass focus:ring-brass accent-brass shrink-0">
+                                    <span>
+                                        Ho letto l'<button type="button" onclick="openLegalModal()" class="text-brass font-semibold underline hover:text-navy">Informativa sulla Privacy (GDPR Reg. UE 2016/679)</button> e acconsento al trattamento dei dati personali ai fini della gestione della richiesta di consulenza legale. *
+                                    </span>
+                                </label>
+
+                                <button type="submit" class="w-full py-4 px-8 rounded-xl bg-navy text-white text-xs font-bold uppercase tracking-wider hover:bg-brass transition-all shadow-md active:scale-95">
+                                    Invia Richiesta &amp; Genera Codice Pratica
+                                </button>
+                            </form>
+
+                            <!-- SCHERMATA DI CONFERMA PRENOTAZIONE -->
+                            <div id="consultation-confirmation" class="hidden space-y-6">
+                                <div class="text-center pb-6 border-b border-slate-200">
+                                    <div class="w-16 h-16 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center mx-auto mb-4">
+                                        <i class="fa-solid fa-check text-2xl"></i>
+                                    </div>
+                                    <span class="text-xs font-bold uppercase tracking-[0.22em] text-emerald-700">Richiesta Registrata</span>
+                                    <h3 class="font-serif text-3xl font-semibold text-navy mt-1">Consulenza Prenotata</h3>
+                                    <p class="text-sm text-muted mt-1">
+                                        Codice Pratica Univoco: <strong id="conf-case-code" class="font-mono text-brass text-base"></strong>
+                                    </p>
+                                </div>
+
+                                <div id="conf-details-box" class="p-5 rounded-2xl bg-paper border border-slate-200 space-y-2.5 text-sm">
+                                    <!-- Popolato da JS -->
+                                </div>
+
+                                <div class="flex flex-col sm:flex-row gap-3">
+                                    <button type="button" onclick="copyLastCaseCode()" class="flex-1 py-3.5 px-5 rounded-xl bg-navy text-white text-xs font-bold uppercase tracking-wider hover:bg-brass transition-colors">
+                                        <i class="fa-regular fa-copy mr-1.5"></i> Copia Codice Pratica
+                                    </button>
+                                    <button type="button" onclick="resetConsultationForm()" class="flex-1 py-3.5 px-5 rounded-xl border border-slate-300 text-navy text-xs font-bold uppercase tracking-wider hover:bg-paper transition-colors">
+                                        Nuova Richiesta
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Colonna Destra: Garanzie & Urgenze -->
+                        <div class="lg:col-span-4 space-y-5">
+                            <div class="bg-navy text-white rounded-3xl p-6 sm:p-7 shadow-elevated space-y-4">
+                                <div class="w-11 h-11 rounded-xl bg-brass/20 border border-brass/50 text-brassLight flex items-center justify-center">
+                                    <i class="fa-solid fa-lock text-lg"></i>
+                                </div>
+                                <h3 class="font-serif text-xl font-semibold">Segreto Professionale</h3>
+                                <p class="text-xs sm:text-sm text-slate-300 leading-relaxed font-light">
+                                    Ogni informazione trasmessa tramite questo modulo è strettamente confidenziale e tutelata dall'art. 13 del Codice Deontologico Forense e dal GDPR.
+                                </p>
+                            </div>
+
+                            <div class="bg-white rounded-3xl p-6 sm:p-7 shadow-soft border border-slate-200/80 space-y-4">
+                                <span class="text-[11px] font-bold uppercase tracking-wider text-brass">Scadenze Imminenti?</span>
+                                <h3 class="font-serif text-xl font-semibold text-navy">Urgenze Legali (24-48h)</h3>
+                                <p class="text-xs sm:text-sm text-muted leading-relaxed">
+                                    Se hai ricevuto un atto giudiziario, un decreto ingiuntivo, una lettera di licenziamento o un avviso di garanzia, seleziona l'opzione <strong>Urgente 24-48h</strong> oppure chiama subito la segreteria.
+                                </p>
+                                <a href="tel:+390419824510" class="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-brassPale text-navy text-xs font-bold uppercase tracking-wider border border-brass/30 hover:bg-brass hover:text-white transition-colors">
+                                    <i class="fa-solid fa-phone"></i>
+                                    +39 041 982 4510
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 4. SEZIONE: LE TUE RICHIESTE DI CONSULENZA SALVATE (LOCALSTORAGE) -->
+                    <div id="saved-consultations-section" class="hidden bg-white rounded-3xl p-6 sm:p-8 shadow-soft border border-slate-200/80">
+                        <div class="flex flex-wrap items-center justify-between gap-3 pb-4 mb-6 border-b border-slate-200/80">
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-[0.2em] text-brass">Archivio Locale</span>
+                                <h2 class="font-serif text-2xl font-semibold text-navy mt-0.5">
+                                    Le Tue Richieste di Consulenza Salvate
+                                </h2>
+                            </div>
+                            <span id="saved-consultations-count" class="px-3.5 py-1 rounded-full bg-paper border border-slate-200 text-xs font-bold text-navy"></span>
+                        </div>
+                        <div id="saved-consultations-list" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <!-- Popolato da JS -->
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- =========================================================
+         FOOTER CONFORME AL CODICE DEONTOLOGICO FORENSE
+    ========================================================== -->
+    <footer class="bg-navy text-slate-300 border-t border-slate-800 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-16">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+
+                <!-- Dati Istituzionali & Deontologici -->
+                <div class="space-y-3.5 lg:col-span-2">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-navyLight border border-brass/40 text-brassLight flex items-center justify-center">
+                            <i class="fa-solid fa-scale-balanced"></i>
+                        </div>
+                        <div>
+                            <span class="font-serif text-xl font-semibold text-white block leading-none">Studio Legale Contarini &amp; Associati</span>
+                            <span class="text-[10px] uppercase tracking-[0.22em] text-brassLight font-semibold">Avvocati e Consulenti Legali</span>
+                        </div>
+                    </div>
+                    <div class="text-xs text-slate-400 leading-relaxed space-y-1">
+                        <p><strong class="text-slate-200">Sede:</strong> Corso del Popolo 42, 30172 Venezia Mestre (VE)</p>
+                        <p><strong class="text-slate-200">P.IVA:</strong> 04192830275 &middot; <strong class="text-slate-200">Ordine degli Avvocati di Venezia</strong> (Iscrizione Albo Cassazionisti)</p>
+                        <p><strong class="text-slate-200">PEC:</strong> <span class="font-mono text-slate-300">studiolegale.contarini@venezia.pecavvocati.it</span></p>
+                        <p><strong class="text-slate-200">Polizza RC Professionale:</strong> Generali Italia S.p.A. — Polizza n. 410982734 (Massimale € 2.500.000,00 ai sensi art. 12 L. 247/2012)</p>
+                    </div>
+                </div>
+
+                <!-- Link Rapidi -->
+                <div>
+                    <h3 class="font-serif text-base font-semibold text-white mb-4">Navigazione</h3>
+                    <ul class="space-y-2.5 text-sm">
+                        <li><button type="button" onclick="navigateTo('home')" class="hover:text-brassLight transition-colors">Home</button></li>
+                        <li><button type="button" onclick="navigateTo('aree')" class="hover:text-brassLight transition-colors">Aree di Competenza</button></li>
+                        <li><button type="button" onclick="navigateTo('studio')" class="hover:text-brassLight transition-colors">Lo Studio &amp; Team</button></li>
+                        <li><button type="button" onclick="navigateTo('consulenza')" class="hover:text-brassLight transition-colors">Consulenza &amp; Onorari</button></li>
+                    </ul>
+                </div>
+
+                <!-- Conformità & Contatti -->
+                <div>
+                    <h3 class="font-serif text-base font-semibold text-white mb-4">Conformità &amp; Contatti</h3>
+                    <ul class="space-y-2.5 text-sm">
+                        <li><a href="tel:+390419824510" class="hover:text-brassLight transition-colors">+39 041 982 4510</a></li>
+                        <li><a href="mailto:segreteria@studiocontarini.it" class="hover:text-brassLight transition-colors">segreteria@studiocontarini.it</a></li>
+                        <li class="pt-1">
+                            <button type="button" onclick="openLegalModal()" class="text-brassLight font-medium hover:underline text-left">
+                                Informativa Privacy &amp; Note Deontologiche
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="mt-12 pt-8 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+                <p>&copy; <span id="current-year">2026</span> Studio Legale Contarini &amp; Associati. Tutti i diritti riservati.</p>
+                <p>Informazione professionale conforme agli artt. 17 e 35 del Codice Deontologico Forense.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- =========================================================
+         PULSANTE FLOTTANTE DISCRETO "PRENOTA CONSULENZA"
+    ========================================================== -->
+    <div id="floating-cta" class="fixed bottom-5 right-5 z-30">
+        <button type="button" onclick="goToConsultationForm()" class="inline-flex items-center gap-2.5 px-5 py-3.5 rounded-full bg-navy text-white text-xs sm:text-sm font-semibold shadow-elevated hover:bg-brass transition-all active:scale-95 border border-brass/50">
+            <i class="fa-solid fa-calendar-check text-brassLight"></i>
+            <span>Prenota Consulenza</span>
+        </button>
+    </div>
+
+    <!-- =========================================================
+         MODALE DETTAGLIO MATERIA LEGALE
+    ========================================================== -->
+    <div id="area-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-navy/80 backdrop-blur-sm p-4 overflow-y-auto" role="dialog" aria-modal="true" aria-labelledby="area-modal-title">
+        <div class="relative w-full max-w-2xl bg-white rounded-3xl shadow-2xl overflow-hidden my-auto border border-slate-200">
+            <!-- Header Modale -->
+            <div class="px-6 sm:px-8 py-6 bg-navy text-white flex items-start justify-between gap-4">
+                <div>
+                    <span id="area-modal-category" class="text-[11px] font-bold uppercase tracking-[0.22em] text-brassLight"></span>
+                    <h2 id="area-modal-title" class="font-serif text-2xl sm:text-3xl font-semibold mt-1"></h2>
+                </div>
+                <button type="button" onclick="closeAreaModal()" aria-label="Chiudi scheda materia" class="p-2.5 rounded-full bg-white/10 text-white hover:bg-brass transition-colors shrink-0">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- Corpo Modale -->
+            <div class="p-6 sm:p-8 space-y-6 max-h-[70vh] overflow-y-auto">
+                <div>
+                    <h3 class="text-xs font-bold uppercase tracking-wider text-brass mb-2">Descrizione dell'Attività</h3>
+                    <p id="area-modal-desc" class="text-sm text-navySoft leading-relaxed"></p>
+                </div>
+
+                <div class="p-5 rounded-2xl bg-paper border border-slate-200/80">
+                    <h3 class="text-xs font-bold uppercase tracking-wider text-navy mb-3 flex items-center gap-2">
+                        <i class="fa-solid fa-briefcase text-brass"></i>
+                        Casi Tipici Trattati
+                    </h3>
+                    <ul id="area-modal-cases" class="space-y-2 text-sm text-navySoft"></ul>
+                </div>
+
+                <div class="p-5 rounded-2xl bg-brassPale/60 border border-brass/30">
+                    <h3 class="text-xs font-bold uppercase tracking-wider text-navy mb-3 flex items-center gap-2">
+                        <i class="fa-solid fa-folder-open text-brass"></i>
+                        Documenti Utili per il Primo Incontro
+                    </h3>
+                    <ul id="area-modal-docs" class="space-y-2 text-sm text-navySoft"></ul>
+                </div>
+
+                <div class="pt-2 flex flex-col sm:flex-row gap-3">
+                    <button id="area-modal-cta" type="button" class="flex-1 py-3.5 px-6 rounded-xl bg-navy text-white text-xs font-bold uppercase tracking-wider hover:bg-brass transition-colors shadow-sm">
+                        Richiedi Consulenza su questa materia
+                    </button>
+                    <button type="button" onclick="closeAreaModal()" class="py-3.5 px-6 rounded-xl border border-slate-300 text-navy text-xs font-bold uppercase tracking-wider hover:bg-paper transition-colors">
+                        Chiudi
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- =========================================================
+         MODALE INFORMATIVA PRIVACY & NOTE DEONTOLOGICHE
+    ========================================================== -->
+    <div id="legal-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-navy/80 backdrop-blur-sm p-4 overflow-y-auto" role="dialog" aria-modal="true" aria-labelledby="legal-modal-title">
+        <div class="relative w-full max-w-2xl bg-white rounded-3xl shadow-2xl overflow-hidden my-auto border border-slate-200">
+            <div class="px-6 sm:px-8 py-5 bg-navy text-white flex items-center justify-between">
+                <h2 id="legal-modal-title" class="font-serif text-xl sm:text-2xl font-semibold">
+                    Informativa Privacy &amp; Note Deontologiche
+                </h2>
+                <button type="button" onclick="closeLegalModal()" aria-label="Chiudi informativa" class="p-2 rounded-full bg-white/10 text-white hover:bg-brass transition-colors">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div class="p-6 sm:p-8 space-y-5 text-sm text-navySoft leading-relaxed max-h-[70vh] overflow-y-auto">
+                <div>
+                    <h3 class="font-serif text-lg font-semibold text-navy mb-1">1. Titolare del Trattamento (GDPR Reg. UE 2016/679)</h3>
+                    <p>Il Titolare del trattamento dei dati personali è <strong>Studio Legale Contarini &amp; Associati</strong>, con sede in Corso del Popolo 42, 30172 Venezia Mestre (VE), P.IVA 04192830275, PEC: <span class="font-mono text-xs">studiolegale.contarini@venezia.pecavvocati.it</span>.</p>
+                </div>
+                <div>
+                    <h3 class="font-serif text-lg font-semibold text-navy mb-1">2. Finalità e Riservatezza</h3>
+                    <p>I dati inseriti nel modulo di prenotazione sono trattati esclusivamente per gestire la richiesta di consulenza legale e adempiere agli obblighi di legge. Tutti i professionisti e collaboratori sono vincolati dal segreto professionale ai sensi dell'art. 200 c.p.p. e dell'art. 13 del Codice Deontologico Forense.</p>
+                </div>
+                <div>
+                    <h3 class="font-serif text-lg font-semibold text-navy mb-1">3. Note Deontologiche &amp; Polizza RC</h3>
+                    <p>Il presente sito ha finalità esclusivamente informative sull'attività professionale dello Studio, nel pieno rispetto degli artt. 17 e 35 del Codice Deontologico Forense. Lo Studio è assicurato per la responsabilità civile professionale con Generali Italia S.p.A. (Polizza n. 410982734, massimale € 2.500.000,00).</p>
+                </div>
+                <div>
+                    <h3 class="font-serif text-lg font-semibold text-navy mb-1">4. Diritti dell'Interessato</h3>
+                    <p>L'interessato può esercitare in qualsiasi momento i diritti di accesso, rettifica, cancellazione e limitazione del trattamento (artt. 15–22 GDPR) scrivendo a <strong>segreteria@studiocontarini.it</strong>.</p>
+                </div>
+                <div class="pt-3 text-right">
+                    <button type="button" onclick="closeLegalModal()" class="px-6 py-2.5 rounded-xl bg-navy text-white text-xs font-bold uppercase tracking-wider hover:bg-brass transition-colors">
+                        Ho compreso
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- =========================================================
+         NOTIFICA TOAST
+    ========================================================== -->
+    <div id="toast-notification" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 px-6 py-3.5 rounded-full bg-navy text-white text-sm font-medium shadow-2xl border border-brass/50 opacity-0 pointer-events-none transition-all duration-300 translate-y-4 text-center max-w-[90vw]">
+    </div>
+
+    <!-- =========================================================
+         JAVASCRIPT VANILLA: SPA, MATERIE, TEAM, FAQ, CHECKLIST, FORM
+    ========================================================== -->
+    <script>
+        /* -------------------------------------------------------
+           1. DATABASE 12 MATERIE LEGALI
+        -------------------------------------------------------- */
+        const practiceAreas = [
+            {
+                id: 'contratti',
+                title: 'Contrattualistica & Obbligazioni',
+                category: 'Civile & Immobiliare',
+                icon: 'fa-file-contract',
+                shortDesc: 'Redazione, revisione e risoluzione di contratti civili e commerciali, tutela in caso di inadempimento.',
+                fullDesc: 'Assistiamo privati e aziende nella stesura, negoziazione e verifica di contratti tipici e atipici, prevenendo contenziosi futuri e tutelando il cliente in caso di inadempimento contrattuale o vizi.',
+                cases: [
+                    'Contratti di compravendita, appalto, fornitura e agenzia',
+                    'Risoluzione per inadempimento e richiesta di risarcimento danni',
+                    'Clausole vessatorie e tutela del consumatore',
+                    'Transazioni stragiudiziali e accordi di saldo e stralcio'
+                ],
+                docs: [
+                    'Copia del contratto o preventivo firmato',
+                    'Corrispondenza email, PEC o raccomandate intercorse',
+                    'Fatture, bonifici o ricevute di pagamento',
+                    'Eventuali perizie o fotografie di difetti/vizi'
+                ]
+            },
+            {
+                id: 'immobiliare',
+                title: 'Locazioni, Sfratti & Condominio',
+                category: 'Civile & Immobiliare',
+                icon: 'fa-building',
+                shortDesc: 'Assistenza per contratti di affitto, sfratti per morosità, impugnazione delibere condominiali e compravendite.',
+                fullDesc: 'Offriamo supporto completo a proprietari, inquilini e amministratori di condominio per la gestione di immobili ad uso abitativo o commerciale e la risoluzione di liti condominiali.',
+                cases: [
+                    'Intimazioni di sfratto per morosità o finita locazione',
+                    'Impugnazione di delibere assembleari condominiali',
+                    'Infiltrazioni, confini, servitù e usucapione',
+                    'Assistenza legale preliminare al rogito notarile'
+                ],
+                docs: [
+                    'Contratto di locazione registrato o atto di proprietà',
+                    'Verbale di assemblea condominiale e regolamento',
+                    'Estratto conto canoni o spese condominiali non pagate',
+                    'Visura catastale e corrispondenza con l’amministratore'
+                ]
+            },
+            {
+                id: 'crediti',
+                title: 'Recupero Crediti & Risarcimento Danni',
+                category: 'Civile & Immobiliare',
+                icon: 'fa-hand-holding-dollar',
+                shortDesc: 'Azioni rapide per il recupero di crediti insoluti, decreti ingiuntivi, responsabilità medica e sinistri.',
+                fullDesc: 'Attiviamo procedure mirate per il recupero stragiudiziale e giudiziale dei crediti, oltre alla quantificazione e richiesta di risarcimento per danni patrimoniali e biologici.',
+                cases: [
+                    'Diffide di pagamento, decreti ingiuntivi e pignoramenti',
+                    'Sinistri stradali gravi e infortuni',
+                    'Responsabilità sanitaria e malasanità',
+                    'Danni da cose in custodia o responsabilità professionale'
+                ],
+                docs: [
+                    'Fatture insolute, DDT o riconoscimento di debito',
+                    'Referti medici, cartelle cliniche e perizie medico-legali',
+                    'Modulo CAI o verbale delle autorità intervenute',
+                    'Eventuali comunicazioni con le compagnie assicurative'
+                ]
+            },
+            {
+                id: 'famiglia',
+                title: 'Separazioni, Divorzi & Affidamento',
+                category: 'Famiglia & Successioni',
+                icon: 'fa-people-roof',
+                shortDesc: 'Tutela dei coniugi e dei minori in separazioni consensuali o giudiziali, assegni di mantenimento e accordi.',
+                fullDesc: 'Affrontiamo le crisi familiari con sensibilità e fermezza, privilegiando percorsi consensuali e di negoziazione assistita per proteggere il benessere dei figli e l’equilibrio patrimoniale.',
+                cases: [
+                    'Separazione consensuale e divorzio congiunto (anche in negoziazione assistita)',
+                    'Separazione e divorzio giudiziale',
+                    'Regolamentazione affidamento minori e modifica assegni di mantenimento',
+                    'Tutela delle coppie di fatto e unioni civili'
+                ],
+                docs: [
+                    'Estratto per riassunto dell’atto di matrimonio e stato di famiglia',
+                    'Ultime 3 dichiarazioni dei redditi (730 / Modello Redditi)',
+                    'Documentazione su mutui, immobili e spese ordinarie/straordinarie figli',
+                    'Eventuali precedenti provvedimenti del Tribunale'
+                ]
+            },
+            {
+                id: 'successioni',
+                title: 'Successioni, Testamenti & Eredità',
+                category: 'Famiglia & Successioni',
+                icon: 'fa-scroll',
+                shortDesc: 'Pianificazione successoria, impugnazione testamenti, lesione di legittima e divisioni ereditarie.',
+                fullDesc: 'Accompagniamo gli eredi nella corretta gestione del patrimonio familiare, risolvendo controversie tra coeredi e verificando la validità delle disposizioni testamentarie.',
+                cases: [
+                    'Accettazione con beneficio d’inventario e rinuncia all’eredità',
+                    'Azione di riduzione per lesione di quota di legittima',
+                    'Divisione ereditaria amichevole o giudiziale',
+                    'Consulenza per redazione di testamento olografo o pubblico'
+                ],
+                docs: [
+                    'Certificato di morte e stato di famiglia storico',
+                    'Copia di eventuale testamento o atti di donazione precedenti',
+                    'Elenco beni immobili (visure) e rapporti bancari del defunto',
+                    'Dichiarazione di successione se già presentata'
+                ]
+            },
+            {
+                id: 'amministrazioni',
+                title: 'Amministrazione di Sostegno & Tutela',
+                category: 'Famiglia & Successioni',
+                icon: 'fa-hands-holding-child',
+                shortDesc: 'Ricorsi per nomina di amministratore di sostegno a tutela di persone anziane o fragili.',
+                fullDesc: 'Forniamo assistenza completa ai familiari per attivare strumenti di protezione giuridica rispettosi della dignità e dell’autonomia residua della persona fragile.',
+                cases: [
+                    'Ricorso al Giudice Tutelare per nomina Amministratore di Sostegno',
+                    'Autorizzazioni per atti di straordinaria amministrazione (vendita immobili)',
+                    'Redazione rendiconti annuali per il Tribunale',
+                    'Sostituzione o revoca dell’amministratore'
+                ],
+                docs: [
+                    'Certificazione medica specialistica attestante le condizioni del beneficiario',
+                    'Documenti d’identità del beneficiario e dei parenti prossimi',
+                    'Elenco sintetico di pensioni, conti e immobili',
+                    'Eventuale decreto di invalidità o Legge 104'
+                ]
+            },
+            {
+                id: 'lavoro-dipendenti',
+                title: 'Licenziamenti & Tutela Lavoratori',
+                category: 'Lavoro',
+                icon: 'fa-user-shield',
+                shortDesc: 'Impugnazione licenziamenti illegittimi, recupero TFR, differenze retributive, demansionamento e mobbing.',
+                fullDesc: 'Difendiamo i diritti dei lavoratori dipendenti e dirigenti sia in fase di conciliazione sindacale sia avanti il Tribunale del Lavoro, nel rigoroso rispetto dei brevi termini di decadenza (60 giorni).',
+                cases: [
+                    'Impugnazione licenziamento disciplinare o per giustificato motivo oggettivo',
+                    'Recupero stipendi arretrati, straordinari e TFR (anche Fondo Garanzia INPS)',
+                    'Dimissioni per giusta causa, mobbing e infortuni sul lavoro',
+                    'Accordi di uscita incentivata e transazioni in sede protetta'
+                ],
+                docs: [
+                    'Lettera di assunzione e contratto di lavoro',
+                    'Lettera di contestazione disciplinare o di licenziamento (con busta/PEC)',
+                    'Ultime 6–12 buste paga e certificazioni CU',
+                    'Eventuali email, messaggi o certificati medici pertinenti'
+                ]
+            },
+            {
+                id: 'lavoro-aziende',
+                title: 'Consulenza Giuslavoristica Imprese',
+                category: 'Lavoro',
+                icon: 'fa-briefcase',
+                shortDesc: 'Gestione rapporti di lavoro, procedimenti disciplinari, riorganizzazioni aziendali e patti di non concorrenza.',
+                fullDesc: 'Affianchiamo imprenditori e direzioni HR nella corretta gestione delle risorse umane, prevenendo vertenze sindacali e strutturando contratti e regolamenti interni conformi alla normativa.',
+                cases: [
+                    'Redazione contratti di lavoro, patti di riservatezza e non concorrenza',
+                    'Gestione procedimenti disciplinari e licenziamenti individuali/collettivi',
+                    'Assistenza in vertenze sindacali e ispezioni ITL / INPS',
+                    'Contratti di appalto genuino e somministrazione'
+                ],
+                docs: [
+                    'CCNL applicato e regolamento aziendale interno',
+                    'Contratto del lavoratore interessato e fascicolo personale',
+                    'Verbali ispettivi o comunicazioni sindacali ricevute',
+                    'Visura camerale aggiornata dell’azienda'
+                ]
+            },
+            {
+                id: 'penale-persona',
+                title: 'Diritto Penale & Difesa Indagati',
+                category: 'Penale',
+                icon: 'fa-gavel',
+                shortDesc: 'Difesa tecnica in indagini preliminari, procedimenti penali, reati stradali e costituzione di parte civile.',
+                fullDesc: 'Garantiamo assistenza penale tempestiva e riservata in ogni stato e grado del procedimento, sia per indagati e imputati sia per le persone offese che intendono costituirsi parte civile.',
+                cases: [
+                    'Assistenza in caso di avviso di garanzia, perquisizione o interrogatorio',
+                    'Reati contro la persona, il patrimonio e codice della strada (guida in stato di ebbrezza)',
+                    'Redazione querele, denunce e costituzione di parte civile',
+                    'Riti alternativi, messa alla prova e riabilitazione penale'
+                ],
+                docs: [
+                    'Ogni atto notificato (verbale elezione domicilio, avviso art. 415-bis, citazione)',
+                    'Documento d’identità e codice fiscale',
+                    'Eventuali referti medici, fotografie o nominativi di testimoni',
+                    'Cronologia sintetica dei fatti con date precise'
+                ]
+            },
+            {
+                id: 'penale-impresa',
+                title: 'Penale d’Impresa, Tributario & 231',
+                category: 'Penale',
+                icon: 'fa-shield-halved',
+                shortDesc: 'Difesa per reati societari, fiscali, sicurezza sul lavoro e predisposizione Modelli Organizzativi D.Lgs. 231/01.',
+                fullDesc: 'Tuteliamo amministratori, sindaci e società nei procedimenti penali economici e progettiamo sistemi di compliance preventiva per escludere la responsabilità amministrativa degli enti.',
+                cases: [
+                    'Difesa in procedimenti per reati tributari e fallimentari',
+                    'Responsabilità in materia di sicurezza sul lavoro (D.Lgs. 81/08)',
+                    'Redazione e aggiornamento Modelli Organizzativi 231 e OdV',
+                    'Indagini difensive aziendali'
+                ],
+                docs: [
+                    'Atti giudiziari o processi verbali di constatazione (PVC)',
+                    'Visura camerale, statuto e deleghe di funzioni aziendali',
+                    'DVR (Documento Valutazione Rischi) se pertinente',
+                    'Bilanci o documentazione contabile oggetto di verifica'
+                ]
+            },
+            {
+                id: 'societario',
+                title: 'Diritto Societario & Crisi d’Impresa',
+                category: 'Imprese & GDPR',
+                icon: 'fa-building-user',
+                shortDesc: 'Costituzione società, patti parasociali, cessioni di quote, liti tra soci e composizione negoziata della crisi.',
+                fullDesc: 'Supportiamo PMI, startup e professionisti nella governance societaria, nelle operazioni straordinarie e nella gestione preventiva delle situazioni di tensione finanziaria.',
+                cases: [
+                    'Redazione statuti, patti parasociali e cessioni di azienda/quote',
+                    'Contenzioso tra soci e azioni di responsabilità verso amministratori',
+                    'Composizione negoziata della crisi d’impresa e accordi con i creditori',
+                    'Consulenza continuativa in abbonamento per PMI'
+                ],
+                docs: [
+                    'Visura camerale storica e statuto sociale vigente',
+                    'Ultimi 2 bilanci approvati e situazione contabile aggiornata',
+                    'Eventuali patti parasociali o verbali assembleari contestati',
+                    'Elenco posizioni debitorie/creditorie rilevanti'
+                ]
+            },
+            {
+                id: 'privacy-gdpr',
+                title: 'Privacy, GDPR & Diritto Digitale',
+                category: 'Imprese & GDPR',
+                icon: 'fa-user-lock',
+                shortDesc: 'Adeguamento GDPR Reg. UE 2016/679, contratti IT/e-commerce, data breach e tutela reputazione online.',
+                fullDesc: 'Accompagniamo aziende, studi professionali ed e-commerce nella piena conformità normativa in materia di protezione dei dati personali e nella tutela contro diffamazione o violazioni digitali.',
+                cases: [
+                    'Audit GDPR, registri trattamenti, informative e nomine responsabili',
+                    'Gestione data breach e assistenza avanti il Garante Privacy',
+                    'Condizioni generali di vendita e-commerce e contratti software/SaaS',
+                    'Rimozione contenuti lesivi, diritto all’oblio e diffamazione online'
+                ],
+                docs: [
+                    'URL del sito web o documentazione privacy attualmente in uso',
+                    'Mappatura sintetica dei software e dei flussi dati aziendali',
+                    'Contratti con fornitori IT o agenzie marketing',
+                    'Screenshot/prove autenticate in caso di diffamazione online'
+                ]
+            }
+        ];
+
+        const areaCategories = ['Tutte', 'Civile & Immobiliare', 'Famiglia & Successioni', 'Lavoro', 'Penale', 'Imprese & GDPR'];
+
+        /* -------------------------------------------------------
+           2. DATABASE TEAM (4 AVVOCATI)
+        -------------------------------------------------------- */
+        const teamMembers = [
+            {
+                id: 'contarini',
+                name: 'Avv. Lorenzo Contarini',
+                role: 'Founder & Avvocato Cassazionista',
+                foro: 'Ordine degli Avvocati di Venezia',
+                languages: 'Italiano, Inglese',
+                specs: ['Diritto Civile', 'Societario', 'Cassazione'],
+                image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=600&q=80',
+                fallback: 'https://placehold.co/600x700/0F172A/C8A165?text=Avv.+Contarini',
+                bioShort: 'Fondatore dello Studio, patrocinante in Cassazione con oltre 22 anni di esperienza nel contenzioso civile e societario.',
+                bioFull: 'Laureato con lode all’Università di Padova, è iscritto all’Albo degli Avvocati di Venezia dal 2003 e all’Albo Speciale dei Cassazionisti dal 2016. Assiste imprenditori, enti e privati in controversie contrattuali complesse, diritto immobiliare e responsabilità civile, privilegiando una strategia chiara e pragmatica.'
+            },
+            {
+                id: 'marchetti',
+                name: 'Avv. Elena Marchetti',
+                role: 'Partner — Famiglia & Successioni',
+                foro: 'Ordine degli Avvocati di Venezia',
+                languages: 'Italiano, Inglese, Francese',
+                specs: ['Famiglia & Minori', 'Successioni', 'Mediazione'],
+                image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80',
+                fallback: 'https://placehold.co/600x700/0F172A/C8A165?text=Avv.+Marchetti',
+                bioShort: 'Specializzata in diritto di famiglia, tutela dei minori, pianificazione successoria e negoziazione assistita.',
+                bioFull: 'Partner dello Studio dal 2012, ha conseguito il Master in Diritto di Famiglia e Mediazione Familiare. Segue con particolare attenzione le separazioni consensuali e giudiziali, la protezione di soggetti fragili (Amministrazioni di Sostegno) e le divisioni ereditarie di patrimoni immobiliari.'
+            },
+            {
+                id: 'bellini',
+                name: 'Avv. Marco Bellini',
+                role: 'Partner — Diritto del Lavoro',
+                foro: 'Ordine degli Avvocati di Venezia',
+                languages: 'Italiano, Inglese',
+                specs: ['Diritto del Lavoro', 'Sindacale', 'Previdenza'],
+                image: 'https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&w=600&q=80',
+                fallback: 'https://placehold.co/600x700/0F172A/C8A165?text=Avv.+Bellini',
+                bioShort: 'Esperto di contenzioso giuslavoristico, licenziamenti, accordi sindacali e consulenza HR per aziende del Veneto.',
+                bioFull: 'Iscritto al Foro di Venezia dal 2010, affianca lavoratori dipendenti, dirigenti e imprese in ogni fase del rapporto di lavoro: dalle vertenze per licenziamento illegittimo e recupero crediti di lavoro, fino alla gestione di riorganizzazioni aziendali e contrattazione di secondo livello.'
+            },
+            {
+                id: 'deluca',
+                name: 'Avv. Chiara De Luca',
+                role: 'Associate — Penale & Privacy GDPR',
+                foro: 'Ordine degli Avvocati di Venezia',
+                languages: 'Italiano, Inglese, Spagnolo',
+                specs: ['Diritto Penale', 'Modelli 231', 'GDPR & Digitale'],
+                image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=600&q=80',
+                fallback: 'https://placehold.co/600x700/0F172A/C8A165?text=Avv.+De+Luca',
+                bioShort: 'Difensore penale, esperta di diritto penale d’impresa, compliance 231 e protezione dei dati personali (GDPR).',
+                bioFull: 'Laureata all’Università Ca’ Foscari / Padova con specializzazione in Diritto Penale dell’Economia e certificazione DPO. Si occupa di difesa penale ordinaria e societaria, costituzione di parte civile per vittime di reato, nonché di adeguamento GDPR e tutela legale nel mondo digitale.'
+            }
+        ];
+
+        /* -------------------------------------------------------
+           3. DATABASE FAQ LEGALI (6 DOMANDE)
+        -------------------------------------------------------- */
+        const faqItems = [
+            {
+                q: 'Quanto costa la prima consulenza orientativa?',
+                a: 'La prima consulenza orientativa (durata 45–60 minuti, in studio o in videocall) ha un compenso trasparente di € 120 oltre accessori di legge (CPA 4% e IVA 22%). Qualora il cliente decida di conferire il mandato allo Studio per l’assistenza successiva, l’importo della prima consulenza viene interamente detratto dal preventivo complessivo.'
+            },
+            {
+                q: 'Il preventivo scritto è obbligatorio prima di iniziare?',
+                a: 'Sì. In conformità all’art. 13 della Legge Professionale Forense (L. 247/2012) e ai parametri del D.M. 55/2014 (aggiornato dal D.M. 147/2022), prima del conferimento di qualsiasi incarico lo Studio consegna un preventivo scritto dettagliato che indica compensi, spese prevedibili e modalità di pagamento.'
+            },
+            {
+                q: 'Lo Studio è abilitato al Patrocinio a Spese dello Stato?',
+                a: 'Sì. I professionisti dello Studio sono iscritti negli elenchi dell’Ordine degli Avvocati di Venezia abilitati al Patrocinio a Spese dello Stato (Gratuito Patrocinio) in ambito civile, di famiglia, lavoro e penale. Durante il primo colloquio verifichiamo se sussistono i requisiti reddituali previsti dalla legge.'
+            },
+            {
+                q: 'Posso svolgere la consulenza da remoto anche se non vivo a Venezia?',
+                a: 'Certamente. Effettuiamo regolarmente consulenze legali in videocall (Zoom o Google Meet) e telefonicamente per clienti residenti in tutta Italia e all’estero, con possibilità di scambio sicuro dei documenti prima dell’incontro e firma digitale degli incarichi.'
+            },
+            {
+                q: 'Quali documenti è utile preparare prima del primo incontro?',
+                a: 'È consigliabile portare o inviare un documento d’identità, eventuali atti giudiziari o lettere ricevute (conservando le buste con timbro postale o ricevute PEC), contratti e una breve cronologia dei fatti. Nella pagina "Consulenza & Onorari" trovi una checklist interattiva suddivisa per materia.'
+            },
+            {
+                q: 'Entro quanto tempo rispondete a una richiesta di consulenza?',
+                a: 'Per le richieste standard garantiamo riscontro entro 24 ore lavorative. In presenza di scadenze processuali imminenti o urgenze penali/lavoristiche (selezionando l’opzione "Urgente 24-48h"), la segreteria fissa un colloquio prioritario entro 24–48 ore.'
+            }
+        ];
+
+        /* -------------------------------------------------------
+           4. CHECKLIST DOCUMENTI PER MATERIA
+        -------------------------------------------------------- */
+        const checklistData = {
+            'Civile': [
+                'Documento d’identità e Codice Fiscale',
+                'Copia del contratto, preventivo o accordo scritto',
+                'Email, raccomandate A/R o PEC inviate e ricevute',
+                'Fatture, bonifici o ricevute di pagamento pertinenti',
+                'Eventuali fotografie, perizie o preventivi di ripristino'
+            ],
+            'Famiglia': [
+                'Documento d’identità e stato di famiglia aggiornato',
+                'Estratto per riassunto dell’atto di matrimonio (se sposati)',
+                'Ultime 3 dichiarazioni dei redditi (730 / Modello Redditi)',
+                'Elenco immobili, mutui e spese principali per i figli',
+                'Eventuali precedenti sentenze o accordi di separazione'
+            ],
+            'Lavoro': [
+                'Contratto di lavoro e lettera di assunzione',
+                'Lettera di contestazione disciplinare o licenziamento (con busta/PEC)',
+                'Ultime 6–12 buste paga e Certificazioni Uniche (CU)',
+                'Comunicazioni aziendali rilevanti (email, ordini di servizio)',
+                'Eventuali certificati medici o verbali INAIL / sindacali'
+            ],
+            'Penale': [
+                'Documento d’identità e Codice Fiscale',
+                'Ogni atto notificato (elezione domicilio, 415-bis, citazione)',
+                'Cronologia scritta dei fatti con date e luoghi precisi',
+                'Referti medici, fotografie o messaggi rilevanti',
+                'Nominativi di eventuali persone informate sui fatti (testimoni)'
+            ],
+            'Imprese': [
+                'Visura camerale aggiornata e statuto societario',
+                'Contratti commerciali, ordini o condizioni generali in uso',
+                'Ultimi 2 bilanci o situazione contabile recente (se rilevante)',
+                'Corrispondenza PEC / diffide intercorse con controparti',
+                'Documentazione Privacy / GDPR o Modello 231 esistente'
+            ]
+        };
+
+        const timeSlots = [
+            { label: '09:30 – 11:00', period: 'Mattina' },
+            { label: '11:00 – 12:30', period: 'Mattina' },
+            { label: '15:00 – 16:30', period: 'Pomeriggio' },
+            { label: '16:30 – 18:00', period: 'Pomeriggio' }
+        ];
+
+        /* -------------------------------------------------------
+           5. STATO APPLICAZIONE
+        -------------------------------------------------------- */
+        let currentPage = 'home';
+        let isMobileMenuOpen = false;
+        let activeAreaCategory = 'Tutte';
+        let areaSearchQuery = '';
+        let openFaqIndex = 0;
+        let expandedTeamBios = new Set();
+        let activeChecklistCategory = 'Civile';
+        let checkedDocsState = {}; // { 'Civile': Set([0, 2]), ... }
+        let selectedTimeSlot = '09:30 – 11:00 (Mattina)';
+        let lastCreatedCase = null;
+
+        const STORAGE_CASES_KEY = 'studio_contarini_consultations_v1';
+
+        /* -------------------------------------------------------
+           6. NAVIGAZIONE SPA FLUIDA
+        -------------------------------------------------------- */
+        function navigateTo(pageId) {
+            try {
+                const pages = ['home', 'aree', 'studio', 'consulenza'];
+                if (!pages.includes(pageId)) return;
+
+                currentPage = pageId;
+                pages.forEach((id) => {
+                    const el = document.getElementById(`page-${id}`);
+                    if (el) {
+                        el.classList.toggle('hidden', id !== pageId);
+                        el.classList.toggle('block', id === pageId);
+                    }
+                });
+
+                // Nasconde il pulsante flottante quando siamo già nella pagina Consulenza
+                const floating = document.getElementById('floating-cta');
+                if (floating) {
+                    floating.classList.toggle('hidden', pageId === 'consulenza');
+                }
+
+                updateNavbarActiveState(pageId);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } catch (err) {
+                console.error('Errore navigazione:', err);
+            }
+        }
+
+        function updateNavbarActiveState(activePage) {
+            document.querySelectorAll('.nav-link').forEach((btn) => {
+                const isTarget = btn.getAttribute('data-nav') === activePage;
+                btn.classList.toggle('text-brass', isTarget);
+                btn.classList.toggle('text-navy/80', !isTarget);
+                btn.classList.toggle('hover:text-brass', !isTarget);
+
+                if (isTarget) {
+                    btn.classList.add('after:content-[""]', 'after:absolute', 'after:left-0', 'after:right-0', 'after:bottom-0', 'after:h-0.5', 'after:bg-brass', 'after:rounded-full');
+                } else {
+                    btn.classList.remove('after:content-[""]', 'after:absolute', 'after:left-0', 'after:right-0', 'after:bottom-0', 'after:h-0.5', 'after:bg-brass', 'after:rounded-full');
+                }
+            });
+
+            document.querySelectorAll('.mobile-nav-link').forEach((btn) => {
+                const isTarget = btn.getAttribute('data-nav') === activePage;
+                btn.classList.toggle('bg-brassPale', isTarget);
+                btn.classList.toggle('text-brass', isTarget);
+                btn.classList.toggle('text-navy', !isTarget);
+            });
+        }
+
+        function toggleMobileMenu(forceState) {
+            const menu = document.getElementById('mobile-menu');
+            const btn = document.getElementById('mobile-menu-btn');
+            const l1 = document.getElementById('ham-line-1');
+            const l2 = document.getElementById('ham-line-2');
+            const l3 = document.getElementById('ham-line-3');
+
+            isMobileMenuOpen = typeof forceState === 'boolean' ? forceState : !isMobileMenuOpen;
+            btn.setAttribute('aria-expanded', String(isMobileMenuOpen));
+
+            if (isMobileMenuOpen) {
+                menu.classList.remove('max-h-0');
+                menu.classList.add('max-h-96');
+                l1.classList.add('rotate-45', 'translate-y-[9px]');
+                l2.classList.add('opacity-0', 'translate-x-2');
+                l3.classList.add('-rotate-45', '-translate-y-[9px]');
+            } else {
+                menu.classList.add('max-h-0');
+                menu.classList.remove('max-h-96');
+                l1.classList.remove('rotate-45', 'translate-y-[9px]');
+                l2.classList.remove('opacity-0', 'translate-x-2');
+                l3.classList.remove('-rotate-45', '-translate-y-[9px]');
+            }
+        }
+
+        function openAreasWithCategory(category) {
+            activeAreaCategory = category;
+            areaSearchQuery = '';
+            const input = document.getElementById('areas-search-input');
+            if (input) input.value = '';
+            renderAreasControls();
+            renderAreasGrid();
+            navigateTo('aree');
+        }
+
+        function goToConsultationForm(preselectedAreaTitle) {
+            navigateTo('consulenza');
+
+            if (preselectedAreaTitle) {
+                const select = document.getElementById('cons-area');
+                if (select) {
+                    for (let i = 0; i < select.options.length; i++) {
+                        if (select.options[i].value === preselectedAreaTitle) {
+                            select.selectedIndex = i;
+                            break;
+                        }
+                    }
+                }
+                // Assicura che il form sia visibile se era aperta la conferma
+                document.getElementById('consultation-form').classList.remove('hidden');
+                document.getElementById('consultation-confirmation').classList.add('hidden');
+            }
+
+            setTimeout(() => {
+                const anchor = document.getElementById('consultation-form-anchor');
+                if (anchor) {
+                    anchor.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }, 140);
+        }
+
+        /* -------------------------------------------------------
+           7. PAGINA 2: AREE DI COMPETENZA & MODALE DETTAGLIO
+        -------------------------------------------------------- */
+        function renderAreasControls() {
+            const container = document.getElementById('areas-category-tabs');
+            if (!container) return;
+
+            container.innerHTML = areaCategories.map((cat) => {
+                const isActive = cat === activeAreaCategory;
+                return `
+                    <button
+                        type="button"
+                        onclick="setAreaCategory('${cat}')"
+                        class="px-4 py-2 rounded-xl text-xs font-semibold transition-all ${isActive ? 'bg-navy text-white shadow-sm' : 'bg-paper text-navy border border-slate-200 hover:border-brass'}"
+                    >
+                        ${cat}
+                    </button>
+                `;
+            }).join('');
+        }
+
+        function setAreaCategory(cat) {
+            activeAreaCategory = cat;
+            renderAreasControls();
+            renderAreasGrid();
+        }
+
+        function updateAreasSearch(val) {
+            areaSearchQuery = val.trim().toLowerCase();
+            renderAreasGrid();
+        }
+
+        function resetAreasFilters() {
+            activeAreaCategory = 'Tutte';
+            areaSearchQuery = '';
+            const input = document.getElementById('areas-search-input');
+            if (input) input.value = '';
+            renderAreasControls();
+            renderAreasGrid();
+        }
+
+        function renderAreasGrid() {
+            const grid = document.getElementById('areas-grid');
+            const emptyState = document.getElementById('areas-empty-state');
+            const counter = document.getElementById('areas-counter');
+            if (!grid) return;
+
+            const filtered = practiceAreas.filter((area) => {
+                if (activeAreaCategory !== 'Tutte' && area.category !== activeAreaCategory) return false;
+                if (areaSearchQuery) {
+                    const haystack = `${area.title} ${area.category} ${area.shortDesc} ${area.fullDesc} ${area.cases.join(' ')}`.toLowerCase();
+                    if (!haystack.includes(areaSearchQuery)) return false;
+                }
+                return true;
+            });
+
+            if (counter) {
+                counter.textContent = `${filtered.length} ${filtered.length === 1 ? 'materia trovata' : 'materie disponibili'}`;
+            }
+
+            if (filtered.length === 0) {
+                grid.innerHTML = '';
+                emptyState.classList.remove('hidden');
+                return;
+            }
+
+            emptyState.classList.add('hidden');
+            grid.innerHTML = filtered.map((area) => `
+                <article
+                    onclick="openAreaModal('${area.id}')"
+                    role="button"
+                    tabindex="0"
+                    onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openAreaModal('${area.id}');}"
+                    class="group cursor-pointer bg-white rounded-2xl p-6 sm:p-7 border border-slate-200/80 shadow-soft hover:shadow-elevated hover:border-brass/50 transition-all duration-300 flex flex-col focus:outline-none focus:ring-2 focus:ring-brass"
+                >
+                    <div class="flex items-center justify-between gap-3 mb-4">
+                        <div class="w-11 h-11 rounded-xl bg-navy/5 text-navy group-hover:bg-navy group-hover:text-brassLight flex items-center justify-center transition-colors">
+                            <i class="fa-solid ${area.icon} text-lg"></i>
+                        </div>
+                        <span class="px-2.5 py-1 rounded-full bg-paper border border-slate-200 text-[10px] font-bold uppercase tracking-wider text-muted">
+                            ${area.category}
+                        </span>
+                    </div>
+
+                    <h3 class="font-serif text-xl font-semibold text-navy group-hover:text-brass transition-colors mb-2.5">
+                        ${area.title}
+                    </h3>
+
+                    <p class="text-sm text-muted leading-relaxed mb-6 flex-grow">
+                        ${area.shortDesc}
+                    </p>
+
+                    <div class="pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-bold uppercase tracking-wider text-brass">
+                        <span>Dettagli &amp; Documenti</span>
+                        <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                    </div>
+                </article>
+            `).join('');
+        }
+
+        function openAreaModal(areaId) {
+            const area = practiceAreas.find((a) => a.id === areaId);
+            if (!area) return;
+
+            document.getElementById('area-modal-category').textContent = area.category;
+            document.getElementById('area-modal-title').textContent = area.title;
+            document.getElementById('area-modal-desc').textContent = area.fullDesc;
+
+            document.getElementById('area-modal-cases').innerHTML = area.cases
+                .map((c) => `<li class="flex items-start gap-2.5"><i class="fa-solid fa-check text-brass mt-1 text-xs"></i><span>${c}</span></li>`)
+                .join('');
+
+            document.getElementById('area-modal-docs').innerHTML = area.docs
+                .map((d) => `<li class="flex items-start gap-2.5"><i class="fa-regular fa-file-lines text-brass mt-1 text-xs"></i><span>${d}</span></li>`)
+                .join('');
+
+            const ctaBtn = document.getElementById('area-modal-cta');
+            ctaBtn.onclick = function () {
+                closeAreaModal();
+                goToConsultationForm(area.title);
+                showToast(`Materia "${area.title}" selezionata nel modulo.`);
+            };
+
+            const modal = document.getElementById('area-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.classList.add('overflow-hidden');
+        }
+
+        function closeAreaModal() {
+            const modal = document.getElementById('area-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            document.body.classList.remove('overflow-hidden');
+        }
+
+        /* -------------------------------------------------------
+           8. PAGINA 3: TEAM & FAQ LEGALI
+        -------------------------------------------------------- */
+        function renderTeam() {
+            const grid = document.getElementById('team-grid');
+            if (!grid) return;
+
+            grid.innerHTML = teamMembers.map((m) => {
+                const isExpanded = expandedTeamBios.has(m.id);
+                return `
+                    <article class="bg-white rounded-3xl overflow-hidden shadow-soft border border-slate-200/80 flex flex-col">
+                        <div class="relative h-64 bg-navy overflow-hidden">
+                            <img
+                                src="${m.image}"
+                                alt="${m.name}"
+                                loading="lazy"
+                                onerror="this.onerror=null;this.src='${m.fallback}';"
+                                class="w-full h-full object-cover object-top"
+                            >
+                            <div class="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-navy/80 to-transparent"></div>
+                            <span class="absolute bottom-3 left-4 text-[11px] font-medium text-brassLight">
+                                <i class="fa-solid fa-landmark mr-1"></i> ${m.foro}
+                            </span>
+                        </div>
+
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="font-serif text-xl font-semibold text-navy">${m.name}</h3>
+                            <p class="text-xs font-bold uppercase tracking-wider text-brass mt-1 mb-3">${m.role}</p>
+
+                            <div class="flex flex-wrap gap-1.5 mb-3">
+                                ${m.specs.map((s) => `<span class="px-2.5 py-0.5 rounded-full bg-paper border border-slate-200 text-[10px] font-semibold text-navySoft">${s}</span>`).join('')}
+                            </div>
+
+                            <p class="text-xs text-muted mb-3">
+                                <i class="fa-solid fa-globe text-brass mr-1"></i> Lingue: <strong class="text-navy">${m.languages}</strong>
+                            </p>
+
+                            <p class="text-xs sm:text-sm text-navySoft leading-relaxed flex-grow">
+                                ${isExpanded ? m.bioFull : m.bioShort}
+                            </p>
+
+                            <button
+                                type="button"
+                                onclick="toggleTeamBio('${m.id}')"
+                                class="mt-4 pt-3 border-t border-slate-100 text-left text-xs font-bold uppercase tracking-wider text-brass hover:text-navy transition-colors flex items-center justify-between"
+                            >
+                                <span>${isExpanded ? 'Riduci biografia' : 'Leggi biografia completa'}</span>
+                                <i class="fa-solid ${isExpanded ? 'fa-chevron-up' : 'fa-chevron-down'} text-[10px]"></i>
+                            </button>
+                        </div>
+                    </article>
+                `;
+            }).join('');
+        }
+
+        function toggleTeamBio(memberId) {
+            if (expandedTeamBios.has(memberId)) {
+                expandedTeamBios.delete(memberId);
+            } else {
+                expandedTeamBios.add(memberId);
+            }
+            renderTeam();
+        }
+
+        function renderFaq() {
+            const container = document.getElementById('faq-container');
+            if (!container) return;
+
+            container.innerHTML = faqItems.map((item, idx) => {
+                const isOpen = idx === openFaqIndex;
+                return `
+                    <div class="bg-paper rounded-2xl border ${isOpen ? 'border-brass/50 shadow-soft bg-white' : 'border-slate-200/80'} overflow-hidden transition-all">
+                        <button
+                            type="button"
+                            onclick="toggleFaq(${idx})"
+                            aria-expanded="${isOpen}"
+                            class="w-full px-6 py-5 text-left flex items-center justify-between gap-4 focus:outline-none"
+                        >
+                            <span class="font-serif font-semibold text-navy text-base sm:text-lg">${item.q}</span>
+                            <span class="w-8 h-8 rounded-full ${isOpen ? 'bg-navy text-brassLight rotate-180' : 'bg-white text-navy border border-slate-200'} flex items-center justify-center shrink-0 transition-transform duration-300">
+                                <i class="fa-solid fa-chevron-down text-xs"></i>
+                            </span>
+                        </button>
+                        <div class="${isOpen ? 'block' : 'hidden'} px-6 pb-5 pt-1 text-sm text-navySoft leading-relaxed border-t border-slate-100">
+                            ${item.a}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function toggleFaq(idx) {
+            openFaqIndex = openFaqIndex === idx ? -1 : idx;
+            renderFaq();
+        }
+
+        /* -------------------------------------------------------
+           9. PAGINA 4: CHECKLIST DOCUMENTI INTERATTIVA
+        -------------------------------------------------------- */
+        function renderChecklist() {
+            const tabsEl = document.getElementById('checklist-tabs');
+            const itemsEl = document.getElementById('checklist-items');
+            const progressEl = document.getElementById('checklist-progress');
+            if (!tabsEl || !itemsEl) return;
+
+            const categories = Object.keys(checklistData);
+            tabsEl.innerHTML = categories.map((cat) => {
+                const isActive = cat === activeChecklistCategory;
+                return `
+                    <button
+                        type="button"
+                        onclick="setChecklistCategory('${cat}')"
+                        class="px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all ${isActive ? 'bg-navy text-white shadow-sm' : 'bg-paper text-navy border border-slate-200 hover:border-brass'}"
+                    >
+                        ${cat}
+                    </button>
+                `;
+            }).join('');
+
+            const docs = checklistData[activeChecklistCategory] || [];
+            if (!checkedDocsState[activeChecklistCategory]) {
+                checkedDocsState[activeChecklistCategory] = new Set();
+            }
+            const checkedSet = checkedDocsState[activeChecklistCategory];
+
+            itemsEl.innerHTML = docs.map((doc, idx) => {
+                const isChecked = checkedSet.has(idx);
+                return `
+                    <label class="flex items-start gap-3 p-4 rounded-xl border cursor-pointer transition-all ${isChecked ? 'bg-emerald-50/70 border-emerald-300' : 'bg-paper border-slate-200/80 hover:border-brass/50'}">
+                        <input
+                            type="checkbox"
+                            ${isChecked ? 'checked' : ''}
+                            onchange="toggleChecklistItem('${activeChecklistCategory}', ${idx})"
+                            class="mt-0.5 w-4 h-4 rounded border-slate-300 text-emerald-700 accent-emerald-700 shrink-0"
+                        >
+                        <span class="text-sm ${isChecked ? 'line-through text-emerald-900/70' : 'text-navySoft'}">${doc}</span>
+                    </label>
+                `;
+            }).join('');
+
+            if (progressEl) {
+                progressEl.textContent = `${checkedSet.size} / ${docs.length} pronti`;
+            }
+        }
+
+        function setChecklistCategory(cat) {
+            activeChecklistCategory = cat;
+            renderChecklist();
+        }
+
+        function toggleChecklistItem(cat, idx) {
+            if (!checkedDocsState[cat]) checkedDocsState[cat] = new Set();
+            if (checkedDocsState[cat].has(idx)) {
+                checkedDocsState[cat].delete(idx);
+            } else {
+                checkedDocsState[cat].add(idx);
+            }
+            renderChecklist();
+        }
+
+        /* -------------------------------------------------------
+           10. MODULO PRENOTAZIONE CONSULENZA & LOCALSTORAGE
+        -------------------------------------------------------- */
+        function populateConsultationAreaSelect() {
+            const select = document.getElementById('cons-area');
+            if (!select) return;
+            select.innerHTML = practiceAreas
+                .map((a) => `<option value="${a.title}">${a.title} (${a.category})</option>`)
+                .join('');
+        }
+
+        function renderConsultationTimeSlots() {
+            const container = document.getElementById('cons-time-slots');
+            if (!container) return;
+
+            container.innerHTML = timeSlots.map((slot) => {
+                const fullValue = `${slot.label} (${slot.period})`;
+                const isSelected = selectedTimeSlot === fullValue;
+                return `
+                    <button
+                        type="button"
+                        onclick="selectConsultationSlot('${fullValue}')"
+                        class="py-2.5 px-2 rounded-xl border text-center transition-all ${isSelected ? 'bg-navy text-white border-navy shadow-sm' : 'bg-paper text-navy border-slate-200 hover:border-brass'}"
+                    >
+                        <span class="block text-xs font-bold">${slot.label}</span>
+                        <span class="block text-[10px] ${isSelected ? 'text-brassLight' : 'text-muted'}">${slot.period}</span>
+                    </button>
+                `;
+            }).join('');
+        }
+
+        function selectConsultationSlot(val) {
+            selectedTimeSlot = val;
+            renderConsultationTimeSlots();
+        }
+
+        function setMinConsultationDate() {
+            const dateInput = document.getElementById('cons-date');
+            if (!dateInput) return;
+            const today = new Date().toISOString().split('T')[0];
+            dateInput.min = today;
+            if (!dateInput.value) dateInput.value = today;
+        }
+
+        function handleConsultationSubmit(event) {
+            event.preventDefault();
+
+            const modality = document.querySelector('input[name="cons-modality"]:checked')?.value || 'In Studio (Venezia Mestre)';
+            const area = document.getElementById('cons-area').value;
+            const urgency = document.querySelector('input[name="cons-urgency"]:checked')?.value || 'Standard';
+            const dateRaw = document.getElementById('cons-date').value;
+            const firstName = document.getElementById('cons-firstname').value.trim();
+            const lastName = document.getElementById('cons-lastname').value.trim();
+            const email = document.getElementById('cons-email').value.trim();
+            const phone = document.getElementById('cons-phone').value.trim();
+            const summary = document.getElementById('cons-summary').value.trim();
+
+            const year = new Date().getFullYear();
+            const caseCode = `#SL-${year}-${Math.floor(1000 + Math.random() * 9000)}`;
+            const formattedDate = dateRaw ? dateRaw.split('-').reverse().join('/') : '';
+
+            const consultation = {
+                code: caseCode,
+                modality,
+                area,
+                urgency,
+                date: formattedDate,
+                timeSlot: selectedTimeSlot,
+                fullName: `${firstName} ${lastName}`,
+                email,
+                phone,
+                summary,
+                status: urgency.includes('Urgente') ? 'Priorità Alta — In verifica' : 'Confermata — In attesa riscontro',
+                createdAt: new Date().toISOString()
+            };
+
+            saveConsultation(consultation);
+            lastCreatedCase = consultation;
+            showConsultationConfirmation(consultation);
+            renderSavedConsultations();
+            showToast(`Richiesta registrata con codice ${caseCode}`);
+        }
+
+        function showConsultationConfirmation(c) {
+            document.getElementById('consultation-form').classList.add('hidden');
+            document.getElementById('consultation-confirmation').classList.remove('hidden');
+            document.getElementById('conf-case-code').textContent = c.code;
+
+            document.getElementById('conf-details-box').innerHTML = `
+                <div class="flex justify-between gap-4"><span class="text-muted">Assistito:</span><strong class="text-navy text-right">${escapeHtml(c.fullName)}</strong></div>
+                <div class="flex justify-between gap-4"><span class="text-muted">Materia:</span><strong class="text-navy text-right">${escapeHtml(c.area)}</strong></div>
+                <div class="flex justify-between gap-4"><span class="text-muted">Modalità:</span><span class="text-navy text-right">${escapeHtml(c.modality)}</span></div>
+                <div class="flex justify-between gap-4"><span class="text-muted">Data e Fascia:</span><strong class="text-navy text-right">${escapeHtml(c.date)} &middot; ${escapeHtml(c.timeSlot)}</strong></div>
+                <div class="flex justify-between gap-4"><span class="text-muted">Urgenza:</span><strong class="${c.urgency.includes('Urgente') ? 'text-brass' : 'text-navy'} text-right">${escapeHtml(c.urgency)}</strong></div>
+                <div class="pt-2 border-t border-slate-200"><span class="text-muted block text-xs mb-1">Sintesi quesito:</span><p class="text-xs text-navySoft italic">"${escapeHtml(c.summary)}"</p></div>
+            `;
+        }
+
+        function copyLastCaseCode() {
+            if (!lastCreatedCase) return;
+            copyTextToClipboard(lastCreatedCase.code, `Codice pratica ${lastCreatedCase.code} copiato!`);
+        }
+
+        function resetConsultationForm() {
+            document.getElementById('consultation-form').reset();
+            document.getElementById('consultation-form').classList.remove('hidden');
+            document.getElementById('consultation-confirmation').classList.add('hidden');
+            selectedTimeSlot = '09:30 – 11:00 (Mattina)';
+            setMinConsultationDate();
+            renderConsultationTimeSlots();
+        }
+
+        function getSavedConsultations() {
+            try {
+                return JSON.parse(localStorage.getItem(STORAGE_CASES_KEY) || '[]');
+            } catch {
+                return [];
+            }
+        }
+
+        function saveConsultation(item) {
+            try {
+                const list = getSavedConsultations();
+                list.unshift(item);
+                localStorage.setItem(STORAGE_CASES_KEY, JSON.stringify(list));
+            } catch (e) {
+                console.warn('localStorage non disponibile:', e);
+            }
+        }
+
+        function cancelSavedConsultation(code) {
+            try {
+                const list = getSavedConsultations().filter((item) => item.code !== code);
+                localStorage.setItem(STORAGE_CASES_KEY, JSON.stringify(list));
+                renderSavedConsultations();
+                showToast(`Richiesta ${code} annullata.`);
+            } catch (e) {
+                console.warn('Errore cancellazione:', e);
+            }
+        }
+
+        function renderSavedConsultations() {
+            const section = document.getElementById('saved-consultations-section');
+            const listEl = document.getElementById('saved-consultations-list');
+            const countEl = document.getElementById('saved-consultations-count');
+            if (!section || !listEl) return;
+
+            const items = getSavedConsultations();
+            if (items.length === 0) {
+                section.classList.add('hidden');
+                return;
+            }
+
+            section.classList.remove('hidden');
+            countEl.textContent = `${items.length} ${items.length === 1 ? 'richiesta' : 'richieste'}`;
+
+            listEl.innerHTML = items.map((c) => `
+                <div class="p-5 rounded-2xl bg-paper border border-slate-200/80 flex flex-col justify-between gap-4">
+                    <div class="space-y-1.5 text-sm">
+                        <div class="flex items-center justify-between gap-2">
+                            <span class="font-mono font-bold text-brass">${escapeHtml(c.code)}</span>
+                            <span class="text-[11px] px-2.5 py-0.5 rounded-full ${c.urgency.includes('Urgente') ? 'bg-amber-100 text-amber-900' : 'bg-emerald-100 text-emerald-800'} font-semibold">
+                                ${escapeHtml(c.status)}
+                            </span>
+                        </div>
+                        <p class="font-serif font-semibold text-navy text-base">${escapeHtml(c.area)}</p>
+                        <p class="text-xs text-muted">${escapeHtml(c.date)} &middot; ${escapeHtml(c.timeSlot)} &middot; ${escapeHtml(c.modality)}</p>
+                        <p class="text-xs text-navySoft">Assistito: <strong>${escapeHtml(c.fullName)}</strong></p>
+                    </div>
+                    <div class="pt-3 border-t border-slate-200 flex items-center justify-between gap-3">
+                        <button type="button" onclick="copyTextToClipboard('${escapeHtml(c.code)}', 'Codice ${escapeHtml(c.code)} copiato!')" class="text-xs font-semibold text-navy hover:text-brass transition-colors">
+                            <i class="fa-regular fa-copy mr-1"></i> Copia codice
+                        </button>
+                        <button type="button" onclick="cancelSavedConsultation('${escapeHtml(c.code)}')" class="text-xs font-semibold text-red-700 hover:underline">
+                            Annulla richiesta
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        /* -------------------------------------------------------
+           11. MODALE PRIVACY & UTILITY (COPY, TOAST, ESCAPE)
+        -------------------------------------------------------- */
+        function openLegalModal() {
+            const modal = document.getElementById('legal-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.classList.add('overflow-hidden');
+        }
+
+        function closeLegalModal() {
+            const modal = document.getElementById('legal-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            document.body.classList.remove('overflow-hidden');
+        }
+
+        function copyTextToClipboard(text, message) {
+            try {
+                const ta = document.createElement('textarea');
+                ta.value = text;
+                ta.setAttribute('readonly', '');
+                ta.style.position = 'fixed';
+                ta.style.opacity = '0';
+                document.body.appendChild(ta);
+                ta.select();
+                document.execCommand('copy');
+                document.body.removeChild(ta);
+                showToast(message || 'Copiato negli appunti!');
+            } catch {
+                showToast('Copia manuale richiesta.');
+            }
+        }
+
+        let toastTimer;
+        function showToast(message) {
+            const toast = document.getElementById('toast-notification');
+            if (!toast) return;
+            toast.textContent = message;
+            toast.classList.remove('opacity-0', 'translate-y-4', 'pointer-events-none');
+            toast.classList.add('opacity-100', 'translate-y-0');
+
+            clearTimeout(toastTimer);
+            toastTimer = setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-4', 'pointer-events-none');
+                toast.classList.remove('opacity-100', 'translate-y-0');
+            }, 3200);
+        }
+
+        function escapeHtml(str) {
+            const div = document.createElement('div');
+            div.textContent = String(str ?? '');
+            return div.innerHTML;
+        }
+
+        /* -------------------------------------------------------
+           12. INIZIALIZZAZIONE
+        -------------------------------------------------------- */
+        document.addEventListener('DOMContentLoaded', () => {
+            const yearEl = document.getElementById('current-year');
+            if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+            const mobileBtn = document.getElementById('mobile-menu-btn');
+            if (mobileBtn) {
+                mobileBtn.addEventListener('click', () => toggleMobileMenu());
+            }
+
+            // Chiusura modali cliccando sull'overlay esterno
+            document.getElementById('area-modal').addEventListener('click', (e) => {
+                if (e.target.id === 'area-modal') closeAreaModal();
+            });
+            document.getElementById('legal-modal').addEventListener('click', (e) => {
+                if (e.target.id === 'legal-modal') closeLegalModal();
+            });
+
+            // Chiusura modali con tasto ESC
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    closeAreaModal();
+                    closeLegalModal();
+                }
+            });
+
+            // Render iniziale componenti
+            renderAreasControls();
+            renderAreasGrid();
+            renderTeam();
+            renderFaq();
+            renderChecklist();
+            populateConsultationAreaSelect();
+            setMinConsultationDate();
+            renderConsultationTimeSlots();
+            renderSavedConsultations();
+            updateNavbarActiveState('home');
+        });
+    </script>
+</body>
+</html>
